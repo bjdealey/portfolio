@@ -463,10 +463,31 @@ async function loadCalAvailability() {
     if (!res.ok) return;
     const data = await res.json();
     if (!data.text) return;
+
     const label = el('hero-availability');
     const dot   = document.querySelector('.hero-eyebrow .dot');
     if (label) label.textContent = data.text;
-    if (dot)   dot.style.display = data.status === 'unavailable' ? 'none' : '';
+
+    if (dot) {
+      if (data.status === 'unavailable') {
+        dot.style.display = 'none';
+      } else if (data.status === 'soon') {
+        dot.style.background = 'var(--accent)';
+        dot.style.boxShadow  = '0 0 8px var(--accent)';
+      }
+      // 'available' keeps the default green from CSS
+    }
+
+    if (data.status === 'unavailable') {
+      // Remove booking link from contact links
+      document.querySelectorAll('.contact-link[href*="cal.com"]')
+        .forEach(l => l.remove());
+      // Redirect pricing CTA to contact form
+      document.querySelectorAll('.pricing-cta[href*="cal.com"]').forEach(l => {
+        l.href        = '#contact';
+        l.textContent = 'Get in Touch';
+      });
+    }
   } catch {
     // silently fall back to static value from content.js
   }
