@@ -27,50 +27,33 @@ jobs:
               print('No API key — skipping')
               sys.exit(0)
 
-          base    = 'https://api.cal.com/v2'
+          EVENT_TYPE_ID = 5955127  # bradjd/30min
+
           headers = {
               'Authorization': f'Bearer {api_key}',
               'cal-api-version': '2024-06-14',
-              'Content-Type': 'application/json',
           }
 
-          def get(path):
-              req = urllib.request.Request(f'{base}{path}', headers=headers)
-              with urllib.request.urlopen(req) as r:
-                  return json.loads(r.read())
-
-          # Discover the 30-min event type ID
-          try:
-              resp    = get('/event-types')
-              et_list = resp.get('data', [])
-              event_type_id = next(
-                  (e['id'] for e in et_list if e.get('slug') == '30min' or e.get('lengthInMinutes') == 30),
-                  None
-              )
-          except Exception as err:
-              print(f'Could not fetch event types: {err}')
-              sys.exit(0)
-
-          if not event_type_id:
-              print('30-min event type not found')
-              sys.exit(0)
-
-          print(f'Event type ID: {event_type_id}')
-
-          # Fetch available slots over next 14 days
           now = datetime.now(timezone.utc)
           end = now + timedelta(days=14)
+          url = (
+              f'https://api.cal.com/v2/slots/available'
+              f'?eventTypeId={EVENT_TYPE_ID}'
+              f'&startTime={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
+              f'&endTime={end.strftime("%Y-%m-%dT%H:%M:%SZ")}'
+          )
+
           try:
-              data  = get(f'/slots/available?eventTypeId={event_type_id}'
-                          f'&startTime={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
-                          f'&endTime={end.strftime("%Y-%m-%dT%H:%M:%SZ")}')
+              req  = urllib.request.Request(url, headers=headers)
+              with urllib.request.urlopen(req) as r:
+                  data = json.loads(r.read())
               slots = data.get('data', {}).get('slots', {})
           except Exception as err:
               print(f'Could not fetch slots: {err}')
               sys.exit(0)
 
           available = sorted(d for d, s in slots.items() if s)
-          print(f'Available days: {len(available)}')
+          print(f'Available days in next 14: {len(available)}')
 
           if not available:
               result = {'status': 'unavailable', 'text': 'Fully booked — check back soon'}
