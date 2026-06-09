@@ -13,7 +13,7 @@ const CONTENT = {
 
   availableForWork: true,
   hireMeText: "Hire Me",
-  cvFile: "cv.pdf",   // filename of your CV in the repo root; set to null to hide the button
+  cvFile: "cv.html",  // CV page; set to null to hide the download buttons
 
   // Skills shown in the scrolling ticker strip
   ticker: [
