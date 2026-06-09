@@ -319,7 +319,7 @@ input, textarea { font: inherit; }
   background-size: 56px 56px;
   opacity: .5;
   mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 20%, transparent 100%);
-  animation: gridDrift 90s linear infinite;
+  animation: gridDrift 25s linear infinite;
 }
 .hero-glow {
   position: absolute;
@@ -327,7 +327,7 @@ input, textarea { font: inherit; }
   width: 700px; height: 500px;
   background: radial-gradient(ellipse, rgba(245,166,35,.07) 0%, transparent 70%);
   filter: blur(40px);
-  animation: glowFloat1 22s ease-in-out infinite;
+  animation: glowFloat1 8s ease-in-out infinite;
 }
 .hero-glow-2 {
   position: absolute;
@@ -335,7 +335,7 @@ input, textarea { font: inherit; }
   width: 500px; height: 380px;
   background: radial-gradient(ellipse, rgba(245,166,35,.05) 0%, transparent 70%);
   filter: blur(60px);
-  animation: glowFloat2 30s ease-in-out infinite;
+  animation: glowFloat2 11s ease-in-out infinite;
 }
 /* dot-grid decoration on the right */
 .hero-deco {
