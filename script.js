@@ -22,13 +22,13 @@ function projectVisual(type) {
 
 function phoneSvg(screenContent) {
   return `<svg viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg"
-    style="width:100%;height:100%;max-height:280px" aria-hidden="true">
+    style="width:100%;height:100%;max-height:280px;color:var(--accent)" aria-hidden="true">
     <rect x="8" y="4" width="84" height="172" rx="13"
-      stroke="#F5A623" stroke-width="1.5" fill="rgba(245,166,35,.04)"/>
+      stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity=".04"/>
     <rect x="14" y="18" width="72" height="140" rx="3"
-      fill="rgba(245,166,35,.05)" stroke="rgba(245,166,35,.12)" stroke-width="1"/>
-    <circle cx="50" cy="11" r="2.5" stroke="#F5A623" stroke-width="1" opacity=".45"/>
-    <rect x="43" y="167" width="14" height="2.5" rx="1.25" fill="#F5A623" opacity=".25"/>
+      fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-opacity=".12" stroke-width="1"/>
+    <circle cx="50" cy="11" r="2.5" stroke="currentColor" stroke-width="1" opacity=".45"/>
+    <rect x="43" y="167" width="14" height="2.5" rx="1.25" fill="currentColor" opacity=".25"/>
     ${screenContent}
   </svg>`;
 }
@@ -41,42 +41,42 @@ function phoneCardsSvg() {
     [20,132,.1,.3],[41,132,.14,.55],[62,132,.2,1.1],
   ].map(([x,y,a,sw]) =>
     `<rect x="${x}" y="${y}" width="18" height="25" rx="2"
-      fill="rgba(245,166,35,${a})" stroke="#F5A623" stroke-width="${sw}"/>`
+      fill="currentColor" fill-opacity="${a}" stroke="currentColor" stroke-width="${sw}"/>`
   ).join('');
   return phoneSvg(`
-    <rect x="18" y="22" width="18" height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
-    <rect x="72" y="22" width="8"  height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
-    <rect x="18" y="30" width="30" height="4"   rx="1" fill="#F5A623" opacity=".55"/>
-    <rect x="18" y="38" width="44" height="3"   rx="1" fill="rgba(245,166,35,.18)"
-      stroke="rgba(245,166,35,.3)" stroke-width=".8"/>
+    <rect x="18" y="22" width="18" height="2.5" rx="1" fill="currentColor" opacity=".3"/>
+    <rect x="72" y="22" width="8"  height="2.5" rx="1" fill="currentColor" opacity=".3"/>
+    <rect x="18" y="30" width="30" height="4"   rx="1" fill="currentColor" opacity=".55"/>
+    <rect x="18" y="38" width="44" height="3"   rx="1" fill="currentColor" fill-opacity=".18"
+      stroke="currentColor" stroke-opacity=".3" stroke-width=".8"/>
     ${cards}
     <rect x="14" y="148" width="72" height="10" rx="0"
-      fill="rgba(245,166,35,.07)" stroke="rgba(245,166,35,.1)" stroke-width="1"/>
-    <circle cx="28" cy="153" r="2.5" fill="#F5A623" opacity=".8"/>
-    <circle cx="42" cy="153" r="2.5" fill="rgba(245,166,35,.3)"/>
-    <circle cx="57" cy="153" r="2.5" fill="rgba(245,166,35,.3)"/>
-    <circle cx="71" cy="153" r="2.5" fill="rgba(245,166,35,.3)"/>
+      fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-opacity=".1" stroke-width="1"/>
+    <circle cx="28" cy="153" r="2.5" fill="currentColor" opacity=".8"/>
+    <circle cx="42" cy="153" r="2.5" fill="currentColor" fill-opacity=".3"/>
+    <circle cx="57" cy="153" r="2.5" fill="currentColor" fill-opacity=".3"/>
+    <circle cx="71" cy="153" r="2.5" fill="currentColor" fill-opacity=".3"/>
   `);
 }
 
 function phoneListSvg() {
   const items = [44, 68, 92, 116, 140].map((y, i) => `
     <circle cx="24" cy="${y+8}" r="7"
-      fill="rgba(245,166,35,${i===0?.2:.08})"
-      stroke="${i===0?'#F5A623':'rgba(245,166,35,.3)'}" stroke-width="1"/>
+      fill="currentColor" fill-opacity="${i===0?.2:.08}"
+      stroke="currentColor" stroke-opacity="${i===0?1:.3}" stroke-width="1"/>
     <rect x="36" y="${y+4}"  width="${30+i%3*6}" height="3" rx="1"
-      fill="${i===0?'#F5A623':'rgba(245,166,35,.35)'}"/>
+      fill="currentColor" fill-opacity="${i===0?1:.35}"/>
     <rect x="36" y="${y+11}" width="${18+i%2*8}" height="2" rx="1"
-      fill="rgba(245,166,35,.2)"/>
-    ${i<4?`<rect x="18" y="${y+21}" width="64" height=".8" rx=".4" fill="rgba(245,166,35,.1)"/>`:''}
+      fill="currentColor" fill-opacity=".2"/>
+    ${i<4?`<rect x="18" y="${y+21}" width="64" height=".8" rx=".4" fill="currentColor" fill-opacity=".1"/>`:''}
   `).join('');
   return phoneSvg(`
-    <rect x="18" y="22" width="18" height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
-    <rect x="72" y="22" width="8"  height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
-    <rect x="18" y="30" width="28" height="4"   rx="1" fill="#F5A623" opacity=".55"/>
+    <rect x="18" y="22" width="18" height="2.5" rx="1" fill="currentColor" opacity=".3"/>
+    <rect x="72" y="22" width="8"  height="2.5" rx="1" fill="currentColor" opacity=".3"/>
+    <rect x="18" y="30" width="28" height="4"   rx="1" fill="currentColor" opacity=".55"/>
     <rect x="18" y="38" width="64" height="4"   rx="2"
-      fill="rgba(245,166,35,.06)" stroke="rgba(245,166,35,.25)" stroke-width=".8"/>
-    <rect x="20" y="39.5" width="8" height="1.5" rx=".75" fill="rgba(245,166,35,.3)"/>
+      fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-opacity=".25" stroke-width=".8"/>
+    <rect x="20" y="39.5" width="8" height="1.5" rx=".75" fill="currentColor" fill-opacity=".3"/>
     ${items}
   `);
 }
@@ -92,45 +92,45 @@ function flowSvg() {
     const isBot = label === 'Bot';
     return `
       <rect x="${x}" y="72" width="22" height="22" rx="4"
-        fill="${isBot?'rgba(245,166,35,.22)':'rgba(245,166,35,.07)'}"
-        stroke="${isBot?'#F5A623':'rgba(245,166,35,.4)'}"
+        fill="currentColor" fill-opacity="${isBot?.22:.07}"
+        stroke="currentColor" stroke-opacity="${isBot?1:.4}"
         stroke-width="${isBot?1.5:1}"/>
       <text x="${x+11}" y="${isBot?85.5:85}" text-anchor="middle"
         font-family="'Courier New',monospace" font-size="4.5"
-        fill="${isBot?'#F5A623':'rgba(245,166,35,.7)'}">${label}</text>
+        fill="currentColor" fill-opacity="${isBot?1:.7}">${label}</text>
       ${i<3?`<path d="M${x+22} 83 L${nodes[i+1][0]} 83"
-        stroke="#F5A623" stroke-width="1" opacity=".4"
+        stroke="currentColor" stroke-width="1" opacity=".4"
         marker-end="url(#arr)"/>`:''}
     `;
   }).join('');
 
   return `<svg viewBox="0 0 120 165" fill="none" xmlns="http://www.w3.org/2000/svg"
-    style="width:100%;height:100%" aria-hidden="true">
+    style="width:100%;height:100%;color:var(--accent)" aria-hidden="true">
     <defs>
       <marker id="arr" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
-        <path d="M0 0 L5 2.5 L0 5" fill="none" stroke="#F5A623" stroke-width=".8" opacity=".5"/>
+        <path d="M0 0 L5 2.5 L0 5" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5"/>
       </marker>
     </defs>
     <rect x="4" y="4" width="112" height="157" rx="4"
-      fill="rgba(245,166,35,.03)" stroke="rgba(245,166,35,.1)" stroke-width="1"/>
-    <rect x="10" y="12" width="40" height="3" rx="1" fill="#F5A623" opacity=".5"/>
-    <rect x="10" y="19" width="60" height="2" rx="1" fill="rgba(245,166,35,.25)"/>
-    <rect x="10" y="25" width="46" height="2" rx="1" fill="rgba(245,166,35,.15)"/>
-    <path d="M10 40 Q60 35 110 40" stroke="rgba(245,166,35,.15)" stroke-width=".8" fill="none"/>
-    <rect x="10" y="50" width="100" height="1" fill="rgba(245,166,35,.08)"/>
-    <rect x="10" y="58" width="26" height="2" rx="1" fill="rgba(245,166,35,.3)"/>
-    <rect x="10" y="64" width="18" height="1.5" rx=".75" fill="rgba(245,166,35,.2)"/>
+      fill="currentColor" fill-opacity=".03" stroke="currentColor" stroke-opacity=".1" stroke-width="1"/>
+    <rect x="10" y="12" width="40" height="3" rx="1" fill="currentColor" opacity=".5"/>
+    <rect x="10" y="19" width="60" height="2" rx="1" fill="currentColor" fill-opacity=".25"/>
+    <rect x="10" y="25" width="46" height="2" rx="1" fill="currentColor" fill-opacity=".15"/>
+    <path d="M10 40 Q60 35 110 40" stroke="currentColor" stroke-opacity=".15" stroke-width=".8" fill="none"/>
+    <rect x="10" y="50" width="100" height="1" fill="currentColor" fill-opacity=".08"/>
+    <rect x="10" y="58" width="26" height="2" rx="1" fill="currentColor" fill-opacity=".3"/>
+    <rect x="10" y="64" width="18" height="1.5" rx=".75" fill="currentColor" fill-opacity=".2"/>
     ${boxes}
-    <rect x="10" y="104" width="100" height="1" fill="rgba(245,166,35,.08)"/>
-    <rect x="10" y="112" width="40" height="3" rx="1" fill="rgba(245,166,35,.15)"/>
-    <rect x="10" y="119" width="60" height="2" rx="1" fill="rgba(245,166,35,.1)"/>
-    <rect x="10" y="125" width="50" height="2" rx="1" fill="rgba(245,166,35,.1)"/>
-    <rect x="10" y="131" width="36" height="2" rx="1" fill="rgba(245,166,35,.08)"/>
+    <rect x="10" y="104" width="100" height="1" fill="currentColor" fill-opacity=".08"/>
+    <rect x="10" y="112" width="40" height="3" rx="1" fill="currentColor" fill-opacity=".15"/>
+    <rect x="10" y="119" width="60" height="2" rx="1" fill="currentColor" fill-opacity=".1"/>
+    <rect x="10" y="125" width="50" height="2" rx="1" fill="currentColor" fill-opacity=".1"/>
+    <rect x="10" y="131" width="36" height="2" rx="1" fill="currentColor" fill-opacity=".08"/>
     <rect x="10" y="140" width="24" height="6" rx="2"
-      fill="rgba(245,166,35,.15)" stroke="#F5A623" stroke-width=".8" opacity=".7"/>
+      fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width=".8" opacity=".7"/>
     <text x="22" y="144.5" text-anchor="middle"
       font-family="'Courier New',monospace" font-size="3.5"
-      fill="#F5A623" opacity=".8">VIEW</text>
+      fill="currentColor" opacity=".8">VIEW</text>
   </svg>`;
 }
 
@@ -293,20 +293,20 @@ function populate() {
 
 function expertiseIcon(i) {
   const icons = [
-    // AI / Agent
-    `<svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="14" r="6" stroke="#F5A623" stroke-width="1.5"/>
-      <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M26 20l4 2-4 2" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-    // Backend
-    `<svg viewBox="0 0 40 40" fill="none"><rect x="6" y="8" width="28" height="24" rx="3" stroke="#F5A623" stroke-width="1.5"/>
-      <path d="M13 18l4 4 10-8" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-    // Frontend
-    `<svg viewBox="0 0 40 40" fill="none"><path d="M8 12h24M8 20h16M8 28h20" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="32" cy="28" r="4" stroke="#F5A623" stroke-width="1.5"/></svg>`,
-    // DevOps
-    `<svg viewBox="0 0 40 40" fill="none"><rect x="6" y="14" width="28" height="18" rx="2" stroke="#F5A623" stroke-width="1.5"/>
-      <path d="M14 14V10a6 6 0 1112 0v4" stroke="#F5A623" stroke-width="1.5" stroke-linecap="round"/>
-      <circle cx="20" cy="23" r="2" fill="#F5A623"/></svg>`,
+    // RPA / Automation
+    `<svg viewBox="0 0 40 40" fill="none" style="color:var(--accent)"><circle cx="20" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M8 34c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M26 20l4 2-4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    // Power Platform
+    `<svg viewBox="0 0 40 40" fill="none" style="color:var(--accent)"><rect x="6" y="8" width="28" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M13 18l4 4 10-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    // App Dev
+    `<svg viewBox="0 0 40 40" fill="none" style="color:var(--accent)"><path d="M8 12h24M8 20h16M8 28h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="32" cy="28" r="4" stroke="currentColor" stroke-width="1.5"/></svg>`,
+    // IT & Systems
+    `<svg viewBox="0 0 40 40" fill="none" style="color:var(--accent)"><rect x="6" y="14" width="28" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M14 14V10a6 6 0 1112 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="20" cy="23" r="2" fill="currentColor"/></svg>`,
   ];
   return icons[i % icons.length];
 }
