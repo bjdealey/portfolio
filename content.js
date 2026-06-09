@@ -52,29 +52,29 @@ const CONTENT = {
         price:       "£150",
         period:      "/ hr",
         featured:    false,
-        description: "Best for process reviews, architecture decisions, or getting expert input on an automation challenge.",
+        description: "Useful if you want to talk through a process, work out whether automation is the right fit, or get a second opinion before committing to a build.",
         features: [
-          "60-minute focused session",
-          "Process assessment & recommendations",
-          "Written summary & action plan",
-          "Follow-up email Q&A",
+          "60-minute call or video session",
+          "Honest assessment of whether automation fits your process",
+          "Written notes and clear next steps",
+          "Follow-up Q&A over email",
         ],
         cta:     "Book a Session",
         ctaHref: "calLink",   // uses your calLink above automatically
       },
       {
         name:        "Automation Project",
-        label:       "Most Popular",
+        label:       "Day Rate",
         price:       "£500",
         period:      "/ day",
         featured:    true,
-        description: "End-to-end RPA delivery — from process discovery through to a tested, documented bot in production.",
+        description: "A full automation project handled personally — from understanding your process at the start through to a tested, documented bot running in your environment.",
         features: [
-          "Process discovery & scoping workshop",
-          "Bot design & development",
-          "Testing & UAT support",
-          "Deployment & handover documentation",
-          "30-day post-launch support",
+          "Understanding your process before writing any code",
+          "Bot build, start to finish",
+          "Testing with your team in your own environment",
+          "Deployment and documentation",
+          "30 days of support after go-live",
         ],
         cta:     "Start a Project",
         ctaHref: "#contact",
@@ -85,7 +85,7 @@ const CONTENT = {
         price:       "£1,200",
         period:      "/ mo",
         featured:    false,
-        description: "Continuous RPA support — bot maintenance, improvements, and new automation capacity each month.",
+        description: "Ongoing support for businesses that want to build out automation steadily, or keep existing bots running well — without the cost of a full-time hire.",
         features: [
           "Up to 3 development days per month",
           "Priority response time",
@@ -119,10 +119,10 @@ const CONTENT = {
 
   // ── Stats strip ───────────────────────────────────────────
   stats: [
-    { count: 6,  label: "Years in Tech"         },
-    { count: 3,  label: "Years in Automation"   },
-    { count: 45, label: "Skills on LinkedIn"    },
-    { count: 2,  label: "AA Certifications"     },
+    { count: 6, label: "Years in Tech"          },
+    { count: 3, label: "Years in Automation"    },
+    { count: 3, label: "Automation Platforms"   },
+    { count: 2, label: "AA Certifications"      },
   ],
 
   // ── About ─────────────────────────────────────────────────
@@ -130,16 +130,16 @@ const CONTENT = {
     titleLine1: "Automate the tedious,",
     titleLine2: "build the useful.",
     body: [
-      "I'm an Automation Engineer at Sytner Group, where I specialise in " +
-      "building bots and streamlining processes using Automation Anywhere, " +
-      "Power Automate, and Kofax TotalAgility. My work focuses on improving " +
-      "operational efficiency and accuracy across a large, complex organisation.",
+      "I'm an Automation Engineer at Sytner Group, where I build and maintain " +
+      "bots that handle document processing, data flows between systems, and the " +
+      "kind of repetitive back-office work that used to take people hours a day. " +
+      "Three years doing this in a fast-moving environment means I know what " +
+      "breaks in production and how to build around it.",
 
-      "I also bring a software developer's background to every engagement — " +
-      "comfortable scripting custom logic, consuming APIs, and handling " +
-      "integrations that off-the-shelf RPA tooling can't reach alone. That " +
-      "depth is what separates bots that work in a demo from ones that run " +
-      "reliably in production.",
+      "I also bring a software developer's background to the work — comfortable " +
+      "scripting custom logic, consuming APIs, and handling edge cases that the " +
+      "standard RPA toolset wasn't designed for. That's what separates a bot " +
+      "that works in a demo from one that runs reliably in production.",
     ],
     tags: [
       "RPA",
@@ -160,10 +160,10 @@ const CONTENT = {
       company: "Sytner Group",
       period:  "Jun 2023 – Present",
       description:
-        "Designing and deploying RPA bots across the business using Automation " +
-        "Anywhere, Power Automate, and Kofax TotalAgility. Focused on document " +
-        "processing, cross-system data flows, and improving operational efficiency " +
-        "at scale. Working hybrid from Leicester.",
+        "Building and maintaining RPA bots across the business using Automation " +
+        "Anywhere, Power Automate, and Kofax TotalAgility. Day-to-day work covers " +
+        "document processing, cross-system data flows, and reducing the manual " +
+        "work that operational teams have to do. Hybrid, based in Leicester.",
     },
     {
       role:    "Service Desk Analyst",
@@ -191,9 +191,10 @@ const CONTENT = {
     {
       title: "RPA & Process Automation",
       description:
-        "Designing and deploying bots that eliminate manual work — from document " +
-        "processing to cross-system data flows — with measurable impact on " +
-        "efficiency and accuracy.",
+        "Hands-on bot development across document processing, back-office data " +
+        "flows, and repetitive cross-system tasks. I've built and maintained " +
+        "these in production — so I design for reliability from the start, " +
+        "not just the happy path.",
       items: [
         "Automation Anywhere (A360)",
         "Kofax TotalAgility",
@@ -204,9 +205,9 @@ const CONTENT = {
     {
       title: "Microsoft Power Platform",
       description:
-        "Low-code automation and app solutions deeply integrated with " +
-        "Microsoft 365. Power Automate flows that connect systems without " +
-        "touching infrastructure.",
+        "Power Automate flows and Power Apps built around the Microsoft 365 " +
+        "tools your team already uses. Often the right choice when full RPA " +
+        "would be overkill — faster to build and easier for the business to own.",
       items: [
         "Power Automate",
         "Power Apps",
@@ -217,9 +218,10 @@ const CONTENT = {
     {
       title: "Technical Integration",
       description:
-        "RPA bots rarely exist in isolation — they consume APIs, transform " +
-        "data, and connect systems built by other teams. A developer's " +
-        "background means those integrations get built properly, not worked around.",
+        "RPA bots rarely work in isolation — they need to talk to APIs, handle " +
+        "data transforms, and connect with other systems in your business. " +
+        "Having a developer's background means I can handle those connections " +
+        "properly, rather than working around what the RPA tool can't do.",
       items: [
         "REST APIs & webhooks",
         "Custom scripting (JS / VBA)",
@@ -250,10 +252,10 @@ const CONTENT = {
       tags:    ["RPA", "Automation Anywhere", "Power Automate"],
       title:   "Enterprise Automation",
       description:
-        "Production bot development at Sytner Group — automating document " +
-        "processing, cross-system data flows, and operational reporting across " +
-        "a large dealership network. Built and maintained using Automation " +
-        "Anywhere A360, Power Automate, and Kofax TotalAgility.",
+        "Bot development and process automation at Sytner Group — handling " +
+        "document processing, cross-system data flows, and tasks that previously " +
+        "relied on manual effort. Built, tested, and maintained personally using " +
+        "Automation Anywhere A360, Power Automate, and Kofax TotalAgility.",
       linkText: "View LinkedIn",
       linkHref: "https://www.linkedin.com/in/brad-dealey/",
     },
