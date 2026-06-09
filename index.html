@@ -30,6 +30,8 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#about">Skip to content</a>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -45,11 +47,11 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="nav-cta" id="nav-cta"></button>
-      <button class="nav-burger" id="burger" aria-label="Menu">
+      <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
       </button>
     </div>
-    <div class="nav-mobile" id="mobile-menu">
+    <div class="nav-mobile" id="mobile-menu" aria-label="Mobile navigation">
       <a href="#about">About</a>
       <a href="#expertise">Expertise</a>
       <a href="#work">Work</a>

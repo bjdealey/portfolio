@@ -224,6 +224,7 @@ function buildTicker() {
 function initCursorGlow() {
   const glow = document.createElement('div');
   glow.className = 'cursor-glow';
+  glow.setAttribute('aria-hidden', 'true');
   document.body.prepend(glow);
   let tx = -999, ty = -999;
   window.addEventListener('mousemove', e => {
@@ -254,12 +255,14 @@ window.addEventListener('scroll', () => {
 burger.addEventListener('click', () => {
   const open = burger.classList.toggle('open');
   mobileMenu.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
 });
 
 mobileMenu.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     burger.classList.remove('open');
     mobileMenu.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
   });
 });
 
