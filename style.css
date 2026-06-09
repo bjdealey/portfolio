@@ -706,6 +706,115 @@ input, textarea { font: inherit; }
 }
 .work-link:hover { gap: 14px; }
 
+/* ── PRICING ── */
+.pricing-subtitle {
+  color: var(--fg-muted);
+  max-width: 520px;
+  margin: -24px auto 56px;
+  text-align: center;
+  line-height: 1.7;
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.pricing-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 36px 32px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.pricing-card--featured {
+  border-color: var(--accent);
+  transform: translateY(-10px);
+}
+.pricing-card--featured::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #000;
+  font-family: var(--mono);
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  white-space: nowrap;
+}
+.pricing-plan-name {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 16px;
+  min-height: 1em;
+}
+.pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.pricing-amount {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  color: var(--accent);
+  line-height: 1;
+}
+.pricing-period {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--fg-muted);
+  letter-spacing: .06em;
+}
+.pricing-desc {
+  font-size: .88rem;
+  color: var(--fg-muted);
+  line-height: 1.7;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.pricing-features {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.pricing-features li {
+  font-size: .88rem;
+  color: var(--fg);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.pricing-features li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: .78rem;
+}
+.pricing-cta { text-align: center; }
+@media (max-width: 900px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .pricing-card--featured { transform: none; }
+}
+
 /* ── TESTIMONIALS ── */
 .testimonials { background: var(--black); }
 .testimonial-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }

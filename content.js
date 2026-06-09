@@ -38,6 +38,65 @@ const CONTENT = {
     expertise:      true,
     work:           true,
     certifications: true,
+    pricing:        true,
+  },
+
+  // ── Pricing ───────────────────────────────────────────────
+  pricing: {
+    tagline: "Transparent pricing.",
+    subtitle: "Fixed-scope projects or flexible hourly work — no hidden costs, no surprises.",
+    plans: [
+      {
+        name:        "Consultation",
+        label:       "Per Session",
+        price:       "£150",
+        period:      "/ hr",
+        featured:    false,
+        description: "Best for process reviews, architecture decisions, or getting expert input on an automation challenge.",
+        features: [
+          "60-minute focused session",
+          "Process assessment & recommendations",
+          "Written summary & action plan",
+          "Follow-up email Q&A",
+        ],
+        cta:     "Book a Session",
+        ctaHref: "calLink",   // uses your calLink above automatically
+      },
+      {
+        name:        "Project",
+        label:       "Most Popular",
+        price:       "£500",
+        period:      "/ day",
+        featured:    true,
+        description: "End-to-end delivery of an automation or app project — from scoping through to deployment.",
+        features: [
+          "Requirements & scoping workshop",
+          "Bot or app design & build",
+          "Testing & UAT support",
+          "Deployment & documentation",
+          "30-day post-launch support",
+        ],
+        cta:     "Start a Project",
+        ctaHref: "#contact",
+      },
+      {
+        name:        "Retainer",
+        label:       "Ongoing",
+        price:       "£1,200",
+        period:      "/ mo",
+        featured:    false,
+        description: "Ongoing development capacity, bot maintenance, and automation support on a monthly basis.",
+        features: [
+          "Up to 3 development days per month",
+          "Priority response time",
+          "Bot monitoring & maintenance",
+          "Monthly review call",
+          "Flexible scope each month",
+        ],
+        cta:     "Get in Touch",
+        ctaHref: "#contact",
+      },
+    ],
   },
 
   // Skills shown in the scrolling ticker strip

@@ -290,6 +290,34 @@ function populate() {
     ).join('');
   }
 
+  // Pricing
+  const pricingGrid = el('pricing-grid');
+  if (pricingGrid && C.pricing && C.pricing.plans) {
+    el('pricing-title').textContent  = C.pricing.tagline;
+    el('pricing-subtitle').textContent = C.pricing.subtitle;
+    pricingGrid.innerHTML = C.pricing.plans.map(p => {
+      const href = p.ctaHref === 'calLink' ? (C.calLink || '#contact') : p.ctaHref;
+      const isExternal = href.startsWith('http');
+      return `
+      <div class="pricing-card${p.featured ? ' pricing-card--featured' : ''}"${p.featured ? ` data-label="${p.label}"` : ''}>
+        <p class="pricing-plan-name">${p.featured ? '' : p.label}</p>
+        <div class="pricing-price">
+          <span class="pricing-amount">${p.price}</span>
+          <span class="pricing-period">${p.period}</span>
+        </div>
+        <p class="pricing-desc">${p.description}</p>
+        <ul class="pricing-features">
+          ${p.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <a href="${href}" class="btn ${p.featured ? 'btn-primary' : 'btn-ghost'} pricing-cta"
+          ${isExternal ? 'target="_blank" rel="noopener"' : ''}
+          data-umami-event="Pricing: ${p.name}">
+          ${p.cta}
+        </a>
+      </div>`;
+    }).join('');
+  }
+
   // Testimonials
   const tsec = el('testimonials-section');
   if (C.testimonials.show && C.testimonials.items.length) {
@@ -501,6 +529,7 @@ function applySections() {
     expertise:      '.expertise',
     work:           '.work',
     certifications: '.certifications',
+    pricing:        '.pricing-section',
   };
   Object.entries(map).forEach(([key, sel]) => {
     if (S[key] === false) {
