@@ -19,7 +19,21 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+.hero,
+.about.section,
+.timeline-section.section,
+.expertise.section,
+.work.section,
+.certifications.section,
+.contact.section,
+.footer {
+  scroll-snap-align: start;
+}
 body {
   background: var(--black);
   color: var(--fg);
