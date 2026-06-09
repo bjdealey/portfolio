@@ -1195,3 +1195,14 @@ body.loaded .hero-scroll   { animation: fadeUp .5s var(--ease) 0.9s   forwards; 
   /* cursor glow doesn't work on light backgrounds */
   .cursor-glow { display: none; }
 }
+
+/* ── Konami toast ──────────────────────────────────────────────────────────── */
+.konami-toast {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  pointer-events: none;
+  opacity: 0; transition: opacity .4s ease;
+  background: rgba(0,0,0,.35); backdrop-filter: blur(4px);
+  font-family: var(--mono); font-size: clamp(1rem, 4vw, 1.8rem); font-weight: 700;
+}
+.konami-toast--in { opacity: 1; }

@@ -596,11 +596,32 @@ function setupLogoExpand() {
   navLogo.addEventListener('mouseleave', () => { attr.style.width = '0'; });
 }
 
+function easterKonami() {
+  const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let i = 0;
+  document.addEventListener('keydown', e => {
+    const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    i = key === seq[i] ? i + 1 : key === seq[0] ? 1 : 0;
+    if (i < seq.length) return;
+    i = 0;
+    const toast = document.createElement('div');
+    toast.className = 'konami-toast';
+    toast.innerHTML = `<span class="logo-tag-bracket">&lt;</span>BD <span class="logo-attr-key">cheat_code</span>=<span class="logo-attr-val">"activated"</span><span class="logo-tag-bracket"> /&gt;</span>`;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('konami-toast--in'));
+    setTimeout(() => {
+      toast.classList.remove('konami-toast--in');
+      toast.addEventListener('transitionend', () => toast.remove(), { once: true });
+    }, 2500);
+  });
+}
+
 loadClarity();
 applyTheme();
 applySections();
 populate();
 setupLogoExpand();
+easterKonami();
 loadGithubStats();
 loadCalAvailability();
 buildTicker();
