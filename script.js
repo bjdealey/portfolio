@@ -390,10 +390,7 @@ mobileMenu.querySelectorAll('a').forEach(a => {
 
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
+    entry.target.classList.toggle('visible', entry.isIntersecting);
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
