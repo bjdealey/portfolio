@@ -263,6 +263,8 @@ if (statsStrip) statsObserver.observe(statsStrip);
 
 // ── CONTACT FORM ──────────────────────────────────────────────────────────────
 
+const FORMSPREE = 'https://formspree.io/f/xgobyqvb';
+
 const form    = document.getElementById('contact-form');
 const success = document.getElementById('form-success');
 const spinCSS = document.createElement('style');
@@ -270,10 +272,11 @@ spinCSS.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
 document.head.appendChild(spinCSS);
 
 if (form) {
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
+    const btn  = form.querySelector('button[type="submit"]');
     const orig = btn.innerHTML;
+
     btn.disabled = true;
     btn.innerHTML = `
       <svg viewBox="0 0 20 20" fill="none" width="18" height="18"
@@ -281,13 +284,31 @@ if (form) {
         <circle cx="10" cy="10" r="7" stroke="currentColor"
           stroke-width="1.5" stroke-dasharray="22 12"/>
       </svg> Sending…`;
-    setTimeout(() => {
-      form.reset();
-      btn.disabled = false;
-      btn.innerHTML = orig;
-      success.classList.add('visible');
-      setTimeout(() => success.classList.remove('visible'), 4000);
-    }, 1200);
+
+    try {
+      const res = await fetch(FORMSPREE, {
+        method:  'POST',
+        headers: { 'Accept': 'application/json' },
+        body:    new FormData(form),
+      });
+
+      if (res.ok) {
+        form.reset();
+        success.textContent = "Message sent! I'll be in touch soon.";
+        success.style.color = '';
+      } else {
+        success.textContent = 'Something went wrong — please email me directly.';
+        success.style.color = '#f87171';
+      }
+    } catch {
+      success.textContent = 'Could not send — please email me directly.';
+      success.style.color = '#f87171';
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    success.classList.add('visible');
+    setTimeout(() => success.classList.remove('visible'), 5000);
   });
 }
 
