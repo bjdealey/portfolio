@@ -11,6 +11,129 @@ function arrowSvg() {
   </svg>`;
 }
 
+// ── PROJECT VISUALS ──────────────────────────────────────────────────────────
+
+function projectVisual(type) {
+  if (type === 'phone-cards') return phoneCardsSvg();
+  if (type === 'phone-list')  return phoneListSvg();
+  if (type === 'flow')        return flowSvg();
+  return '';
+}
+
+function phoneSvg(screenContent) {
+  return `<svg viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg"
+    style="width:100%;height:100%;max-height:280px" aria-hidden="true">
+    <rect x="8" y="4" width="84" height="172" rx="13"
+      stroke="#F5A623" stroke-width="1.5" fill="rgba(245,166,35,.04)"/>
+    <rect x="14" y="18" width="72" height="140" rx="3"
+      fill="rgba(245,166,35,.05)" stroke="rgba(245,166,35,.12)" stroke-width="1"/>
+    <circle cx="50" cy="11" r="2.5" stroke="#F5A623" stroke-width="1" opacity=".45"/>
+    <rect x="43" y="167" width="14" height="2.5" rx="1.25" fill="#F5A623" opacity=".25"/>
+    ${screenContent}
+  </svg>`;
+}
+
+function phoneCardsSvg() {
+  const cards = [
+    [20,48,.22,1.3],[41,48,.1,.4],[62,48,.3,1.5],
+    [20,76,.1,.35],[41,76,.2,1.2],[62,76,.1,.4],
+    [20,104,.15,.6],[41,104,.28,1.4],[62,104,.1,.35],
+    [20,132,.1,.3],[41,132,.14,.55],[62,132,.2,1.1],
+  ].map(([x,y,a,sw]) =>
+    `<rect x="${x}" y="${y}" width="18" height="25" rx="2"
+      fill="rgba(245,166,35,${a})" stroke="#F5A623" stroke-width="${sw}"/>`
+  ).join('');
+  return phoneSvg(`
+    <rect x="18" y="22" width="18" height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
+    <rect x="72" y="22" width="8"  height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
+    <rect x="18" y="30" width="30" height="4"   rx="1" fill="#F5A623" opacity=".55"/>
+    <rect x="18" y="38" width="44" height="3"   rx="1" fill="rgba(245,166,35,.18)"
+      stroke="rgba(245,166,35,.3)" stroke-width=".8"/>
+    ${cards}
+    <rect x="14" y="148" width="72" height="10" rx="0"
+      fill="rgba(245,166,35,.07)" stroke="rgba(245,166,35,.1)" stroke-width="1"/>
+    <circle cx="28" cy="153" r="2.5" fill="#F5A623" opacity=".8"/>
+    <circle cx="42" cy="153" r="2.5" fill="rgba(245,166,35,.3)"/>
+    <circle cx="57" cy="153" r="2.5" fill="rgba(245,166,35,.3)"/>
+    <circle cx="71" cy="153" r="2.5" fill="rgba(245,166,35,.3)"/>
+  `);
+}
+
+function phoneListSvg() {
+  const items = [44, 68, 92, 116, 140].map((y, i) => `
+    <circle cx="24" cy="${y+8}" r="7"
+      fill="rgba(245,166,35,${i===0?.2:.08})"
+      stroke="${i===0?'#F5A623':'rgba(245,166,35,.3)'}" stroke-width="1"/>
+    <rect x="36" y="${y+4}"  width="${30+i%3*6}" height="3" rx="1"
+      fill="${i===0?'#F5A623':'rgba(245,166,35,.35)'}"/>
+    <rect x="36" y="${y+11}" width="${18+i%2*8}" height="2" rx="1"
+      fill="rgba(245,166,35,.2)"/>
+    ${i<4?`<rect x="18" y="${y+21}" width="64" height=".8" rx=".4" fill="rgba(245,166,35,.1)"/>`:''}
+  `).join('');
+  return phoneSvg(`
+    <rect x="18" y="22" width="18" height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
+    <rect x="72" y="22" width="8"  height="2.5" rx="1" fill="#F5A623" opacity=".3"/>
+    <rect x="18" y="30" width="28" height="4"   rx="1" fill="#F5A623" opacity=".55"/>
+    <rect x="18" y="38" width="64" height="4"   rx="2"
+      fill="rgba(245,166,35,.06)" stroke="rgba(245,166,35,.25)" stroke-width=".8"/>
+    <rect x="20" y="39.5" width="8" height="1.5" rx=".75" fill="rgba(245,166,35,.3)"/>
+    ${items}
+  `);
+}
+
+function flowSvg() {
+  const nodes = [
+    [14, 'Data'],
+    [40, 'Fetch'],
+    [66, 'Bot'],
+    [92, 'Output'],
+  ];
+  const boxes = nodes.map(([x, label], i) => {
+    const isBot = label === 'Bot';
+    return `
+      <rect x="${x}" y="72" width="22" height="22" rx="4"
+        fill="${isBot?'rgba(245,166,35,.22)':'rgba(245,166,35,.07)'}"
+        stroke="${isBot?'#F5A623':'rgba(245,166,35,.4)'}"
+        stroke-width="${isBot?1.5:1}"/>
+      <text x="${x+11}" y="${isBot?85.5:85}" text-anchor="middle"
+        font-family="'Courier New',monospace" font-size="4.5"
+        fill="${isBot?'#F5A623':'rgba(245,166,35,.7)'}">${label}</text>
+      ${i<3?`<path d="M${x+22} 83 L${nodes[i+1][0]} 83"
+        stroke="#F5A623" stroke-width="1" opacity=".4"
+        marker-end="url(#arr)"/>`:''}
+    `;
+  }).join('');
+
+  return `<svg viewBox="0 0 120 165" fill="none" xmlns="http://www.w3.org/2000/svg"
+    style="width:100%;height:100%" aria-hidden="true">
+    <defs>
+      <marker id="arr" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">
+        <path d="M0 0 L5 2.5 L0 5" fill="none" stroke="#F5A623" stroke-width=".8" opacity=".5"/>
+      </marker>
+    </defs>
+    <rect x="4" y="4" width="112" height="157" rx="4"
+      fill="rgba(245,166,35,.03)" stroke="rgba(245,166,35,.1)" stroke-width="1"/>
+    <rect x="10" y="12" width="40" height="3" rx="1" fill="#F5A623" opacity=".5"/>
+    <rect x="10" y="19" width="60" height="2" rx="1" fill="rgba(245,166,35,.25)"/>
+    <rect x="10" y="25" width="46" height="2" rx="1" fill="rgba(245,166,35,.15)"/>
+    <path d="M10 40 Q60 35 110 40" stroke="rgba(245,166,35,.15)" stroke-width=".8" fill="none"/>
+    <rect x="10" y="50" width="100" height="1" fill="rgba(245,166,35,.08)"/>
+    <rect x="10" y="58" width="26" height="2" rx="1" fill="rgba(245,166,35,.3)"/>
+    <rect x="10" y="64" width="18" height="1.5" rx=".75" fill="rgba(245,166,35,.2)"/>
+    ${boxes}
+    <rect x="10" y="104" width="100" height="1" fill="rgba(245,166,35,.08)"/>
+    <rect x="10" y="112" width="40" height="3" rx="1" fill="rgba(245,166,35,.15)"/>
+    <rect x="10" y="119" width="60" height="2" rx="1" fill="rgba(245,166,35,.1)"/>
+    <rect x="10" y="125" width="50" height="2" rx="1" fill="rgba(245,166,35,.1)"/>
+    <rect x="10" y="131" width="36" height="2" rx="1" fill="rgba(245,166,35,.08)"/>
+    <rect x="10" y="140" width="24" height="6" rx="2"
+      fill="rgba(245,166,35,.15)" stroke="#F5A623" stroke-width=".8" opacity=".7"/>
+    <text x="22" y="144.5" text-anchor="middle"
+      font-family="'Courier New',monospace" font-size="3.5"
+      fill="#F5A623" opacity=".8">VIEW</text>
+  </svg>`;
+}
+
 // ── POPULATE FROM content.js ─────────────────────────────────────────────────
 
 function populate() {
@@ -92,12 +215,8 @@ function populate() {
   // Projects
   el('work-grid').innerHTML = C.projects.map(p => `
     <article class="work-card ${p.featured ? 'work-card--featured' : ''}">
-      <div class="work-card-img" style="--hue:220">
-        <div class="work-card-placeholder">
-          ${p.featured
-            ? '<div class="placeholder-lines"><div class="pl pl-1"></div><div class="pl pl-2"></div><div class="pl pl-3"></div></div>'
-            : '<div class="placeholder-circle"></div>'}
-        </div>
+      <div class="work-card-img">
+        <div class="work-card-visual">${projectVisual(p.visual)}</div>
       </div>
       <div class="work-card-body">
         <div class="work-card-meta">

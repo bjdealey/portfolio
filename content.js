@@ -162,6 +162,7 @@ const CONTENT = {
   projects: [
     {
       featured: true,
+      visual:  "phone-cards",
       tags:    ["React Native", "TypeScript", "Mobile"],
       title:   "Kamika",
       description:
@@ -174,6 +175,7 @@ const CONTENT = {
       linkHref: "https://github.com/bjdealey/Kamika",
     },
     {
+      visual:  "phone-list",
       tags:    ["React Native", "Expo", "TypeScript"],
       title:   "Pokevault",
       description:
@@ -183,6 +185,7 @@ const CONTENT = {
       linkHref: "https://github.com/bjdealey/pokevault",
     },
     {
+      visual:  "flow",
       tags:    ["RPA", "Professional", "Sytner Group"],
       title:   "Enterprise Automation",
       description:

@@ -606,6 +606,17 @@ input, textarea { font: inherit; }
   z-index: 1;
 }
 
+.work-card-visual {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.work-card--featured .work-card-visual { padding: 28px 40px; }
 .work-card-placeholder { position: relative; z-index: 1; }
 .placeholder-lines { display: flex; flex-direction: column; gap: 8px; width: 100px; }
 .pl { height: 2px; background: rgba(245,166,35,.25); }
