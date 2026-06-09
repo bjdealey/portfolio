@@ -194,6 +194,7 @@ function initCursorGlow() {
 populate();
 buildTicker();
 initCursorGlow();
+requestAnimationFrame(() => document.body.classList.add('loaded'));
 
 // ── NAV: scroll state + mobile menu ──────────────────────────────────────────
 

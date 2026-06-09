@@ -742,3 +742,23 @@ input, textarea { font: inherit; }
   .section-title { font-size: 1.9rem; }
   .stats-inner { padding: 0 20px; }
 }
+
+/* ── PAGE LOAD ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+body:not(.loaded) .nav-inner,
+body:not(.loaded) .hero-eyebrow,
+body:not(.loaded) .hero-title,
+body:not(.loaded) .hero-sub,
+body:not(.loaded) .hero-actions,
+body:not(.loaded) .hero-scroll { opacity: 0; }
+
+body.loaded .nav-inner     { animation: fadeUp .5s var(--ease) 0.05s  forwards; }
+body.loaded .hero-eyebrow  { animation: fadeUp .6s var(--ease) 0.2s   forwards; }
+body.loaded .hero-title    { animation: fadeUp .7s var(--ease) 0.35s  forwards; }
+body.loaded .hero-sub      { animation: fadeUp .6s var(--ease) 0.55s  forwards; }
+body.loaded .hero-actions  { animation: fadeUp .6s var(--ease) 0.7s   forwards; }
+body.loaded .hero-scroll   { animation: fadeUp .5s var(--ease) 0.9s   forwards; }
