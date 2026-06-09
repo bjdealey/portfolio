@@ -69,6 +69,33 @@ const CONTENT = {
     ],
   },
 
+  // ── Career timeline ───────────────────────────────────────
+  timeline: [
+    {
+      role:    "Automation Engineer",
+      company: "Sytner Group",
+      period:  "2023 – Present",
+      description:
+        "Building and deploying RPA bots across the business using Automation " +
+        "Anywhere, Power Automate, and Kofax TotalAgility. Focused on operational " +
+        "efficiency, document processing, and cross-system automation.",
+    },
+    {
+      role:    "ROLE TITLE",         // ← fill in
+      company: "COMPANY NAME",       // ← fill in
+      period:  "20XX – 20XX",        // ← fill in
+      description:
+        "Brief description of your responsibilities and achievements here.",
+    },
+    {
+      role:    "ROLE TITLE",         // ← fill in
+      company: "COMPANY NAME",       // ← fill in
+      period:  "20XX – 20XX",        // ← fill in
+      description:
+        "Brief description of your responsibilities and achievements here.",
+    },
+  ],
+
   // ── Expertise cards ───────────────────────────────────────
   expertise: [
     {

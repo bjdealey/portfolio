@@ -57,6 +57,24 @@ function populate() {
   el('about-tags').innerHTML = C.about.tags
     .map(t => `<span class="tag">${t}</span>`).join('');
 
+  // Timeline
+  const timelineList = el('timeline-list');
+  if (timelineList && C.timeline && C.timeline.length) {
+    timelineList.innerHTML = C.timeline.map((entry, i) => `
+      <div class="timeline-entry">
+        <div class="timeline-marker">
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-body">
+          <p class="timeline-period">${entry.period}</p>
+          <h3 class="timeline-role">${entry.role}</h3>
+          <p class="timeline-company">${entry.company}</p>
+          <p class="timeline-desc">${entry.description}</p>
+        </div>
+      </div>`
+    ).join('');
+  }
+
   // Expertise cards
   el('expertise-grid').innerHTML = C.expertise.map((card, i) => `
     <div class="expertise-card" style="transition-delay:${i * 80}ms">
@@ -256,7 +274,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll(
-  '.expertise-card, .work-card, .testimonial-card, .about-grid, .contact-inner'
+  '.expertise-card, .work-card, .timeline-entry, .testimonial-card, .about-grid, .contact-inner'
 ).forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);
