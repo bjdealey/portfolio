@@ -63,17 +63,17 @@ const CONTENT = {
         ctaHref: "calLink",   // uses your calLink above automatically
       },
       {
-        name:        "Project",
+        name:        "Automation Project",
         label:       "Most Popular",
         price:       "£500",
         period:      "/ day",
         featured:    true,
-        description: "End-to-end delivery of an automation or app project — from scoping through to deployment.",
+        description: "End-to-end RPA delivery — from process discovery through to a tested, documented bot in production.",
         features: [
-          "Requirements & scoping workshop",
-          "Bot or app design & build",
+          "Process discovery & scoping workshop",
+          "Bot design & development",
           "Testing & UAT support",
-          "Deployment & documentation",
+          "Deployment & handover documentation",
           "30-day post-launch support",
         ],
         cta:     "Start a Project",
@@ -85,7 +85,7 @@ const CONTENT = {
         price:       "£1,200",
         period:      "/ mo",
         featured:    false,
-        description: "Ongoing development capacity, bot maintenance, and automation support on a monthly basis.",
+        description: "Continuous RPA support — bot maintenance, improvements, and new automation capacity each month.",
         features: [
           "Up to 3 development days per month",
           "Priority response time",
@@ -312,9 +312,9 @@ const CONTENT = {
   // ── Contact ───────────────────────────────────────────────
   contact: {
     subtitle:
-      "Open to automation, app dev, and full-stack work — hybrid or remote, " +
-      "based in Leicestershire. Got a process to automate or an app to build? " +
-      "Let's talk.",
+      "Available for RPA consulting — process automation, bot development, and " +
+      "Power Platform work. Remote or hybrid, based in Leicestershire. " +
+      "Got a process to automate? Let's talk.",
   },
 
   // ── Footer ────────────────────────────────────────────────
