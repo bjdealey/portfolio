@@ -85,6 +85,24 @@ function populate() {
     </article>`
   ).join('');
 
+  // Certifications
+  const certGrid = el('cert-grid');
+  if (certGrid && C.certifications && C.certifications.length) {
+    certGrid.innerHTML = C.certifications.map(c => `
+      <div class="cert-card">
+        <div class="cert-badge">${c.issuerInitials}</div>
+        <div class="cert-body">
+          <p class="cert-issuer">${c.issuer}</p>
+          <h3 class="cert-title">${c.title}</h3>
+          <div class="cert-meta">
+            <span class="cert-date">Issued ${c.issued}</span>
+            <span class="cert-id">ID&nbsp;${c.credentialId}</span>
+          </div>
+        </div>
+      </div>`
+    ).join('');
+  }
+
   // Testimonials
   const tsec = el('testimonials-section');
   if (C.testimonials.show && C.testimonials.items.length) {
@@ -230,7 +248,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll(
-  '.expertise-card, .work-card, .testimonial-card, .about-grid, .contact-inner'
+  '.expertise-card, .work-card, .cert-card, .testimonial-card, .about-grid, .contact-inner'
 ).forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);

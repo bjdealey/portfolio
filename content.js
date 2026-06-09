@@ -160,6 +160,24 @@ const CONTENT = {
     },
   ],
 
+  // ── Certifications ────────────────────────────────────────
+  certifications: [
+    {
+      title:        "Automation Developer Career Quest - Start Phase",
+      issuer:       "Automation Anywhere",
+      issuerInitials: "AA",
+      issued:       "Feb 2025",
+      credentialId: "132168444",
+    },
+    {
+      title:        "Automation Anywhere RPA Essentials for Students (Automation 360)",
+      issuer:       "Automation Anywhere",
+      issuerInitials: "AA",
+      issued:       "Mar 2023",
+      credentialId: "70954925",
+    },
+  ],
+
   // ── Testimonials ──────────────────────────────────────────
   testimonials: {
     show: false,  // flip to true and add items below to show this section
