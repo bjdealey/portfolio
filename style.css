@@ -681,6 +681,14 @@ input, textarea { font: inherit; }
   padding: 3px 8px;
   border-radius: 2px;
 }
+.work-github-stats {
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: .06em;
+  color: var(--fg-muted);
+  width: 100%;
+  margin-top: 6px;
+}
 .work-card-body h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: 10px; }
 .work-card-body > p { font-size: .84rem; color: var(--fg-muted); line-height: 1.75; flex: 1; }
 .work-link {

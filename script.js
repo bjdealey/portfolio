@@ -29,6 +29,22 @@ function arrowSvg() {
   </svg>`;
 }
 
+function calSvg() {
+  return `<svg viewBox="0 0 20 20" fill="none" width="18" height="18">
+    <rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M3 8h14" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M7 2v3M13 2v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    <circle cx="10" cy="13" r="1.2" fill="currentColor"/>
+    <circle cx="6.5" cy="13" r="1.2" fill="currentColor"/>
+    <circle cx="13.5" cy="13" r="1.2" fill="currentColor"/>
+  </svg>`;
+}
+
+function githubRepo(url) {
+  const m = url && url.match(/github\.com\/([^/]+\/[^/?#]+)/);
+  return m ? m[1] : null;
+}
+
 // ── PROJECT VISUALS ──────────────────────────────────────────────────────────
 
 function projectVisual(type) {
@@ -234,14 +250,17 @@ function populate() {
   ).join('');
 
   // Projects
-  el('work-grid').innerHTML = C.projects.map(p => `
-    <article class="work-card ${p.featured ? 'work-card--featured' : ''}">
+  el('work-grid').innerHTML = C.projects.map(p => {
+    const repo = githubRepo(p.linkHref);
+    return `
+    <article class="work-card ${p.featured ? 'work-card--featured' : ''}"${repo ? ` data-repo="${repo}"` : ''}>
       <div class="work-card-img">
         <div class="work-card-visual">${projectVisual(p.visual)}</div>
       </div>
       <div class="work-card-body">
         <div class="work-card-meta">
           ${p.tags.map(t => `<span class="work-tag">${t}</span>`).join('')}
+          ${repo ? '<span class="work-github-stats"></span>' : ''}
         </div>
         <h3>${p.title}</h3>
         <p>${p.description}</p>
@@ -249,8 +268,8 @@ function populate() {
           ${p.linkText} ${arrowSvg()}
         </a>
       </div>
-    </article>`
-  ).join('');
+    </article>`;
+  }).join('');
 
   // Certifications
   const certGrid = el('cert-grid');
@@ -296,6 +315,7 @@ function populate() {
     { icon: emailSvg(),    href: `mailto:${C.email}`, label: C.email,                             event: 'Contact: Email' },
     { icon: githubSvg(),   href: C.github,             label: C.github.replace('https://', ''),   event: 'Contact: GitHub' },
     ...(C.linkedin ? [{ icon: linkedinSvg(), href: C.linkedin, label: C.linkedin.replace('https://', ''), event: 'Contact: LinkedIn' }] : []),
+    ...(C.calLink  ? [{ icon: calSvg(),      href: C.calLink,  label: 'Book a call',              event: 'Contact: Book a Call' }] : []),
   ].map(l => `
     <a href="${l.href}" class="contact-link" ${l.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''} data-umami-event="${l.event}">
       ${l.icon} ${l.label}
@@ -406,6 +426,40 @@ function initCursorGlow() {
   });
 }
 
+// ── GITHUB STATS ─────────────────────────────────────────────────────────────
+
+async function loadGithubStats() {
+  const cards = document.querySelectorAll('.work-card[data-repo]');
+  for (const card of cards) {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${card.dataset.repo}`);
+      if (!res.ok) continue;
+      const d = await res.json();
+      const el = card.querySelector('.work-github-stats');
+      if (!el) continue;
+      const parts = [];
+      if (d.stargazers_count > 0) parts.push(`★ ${d.stargazers_count}`);
+      if (d.language) parts.push(d.language);
+      if (d.pushed_at) {
+        parts.push(new Date(d.pushed_at).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }));
+      }
+      if (parts.length) el.textContent = parts.join(' · ');
+    } catch {}
+  }
+}
+
+// ── MICROSOFT CLARITY ─────────────────────────────────────────────────────────
+
+function loadClarity() {
+  const id = CONTENT.clarityId;
+  if (!id) return;
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window,document,'clarity','script',id);
+}
+
 // ── THEME ─────────────────────────────────────────────────────────────────────
 
 function applyTheme() {
@@ -458,9 +512,11 @@ function applySections() {
 
 // ── RUN ───────────────────────────────────────────────────────────────────────
 
+loadClarity();
 applyTheme();
 applySections();
 populate();
+loadGithubStats();
 buildTicker();
 initCursorGlow();
 requestAnimationFrame(() => document.body.classList.add('loaded'));

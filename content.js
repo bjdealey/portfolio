@@ -15,6 +15,15 @@ const CONTENT = {
   hireMeText: "Hire Me",
   cvFile: "cv.html",  // CV page; set to null to hide the download buttons
 
+  // ── Integrations ──────────────────────────────────────────
+  // Cal.com booking link — shown as "Book a call" in the contact section.
+  // Set to your Cal.com URL, e.g. "https://cal.com/brad-dealey/30min"
+  calLink: null,
+
+  // Microsoft Clarity project ID — enables heatmaps + session recordings.
+  // Find it at clarity.microsoft.com → your project → Setup → get the ID string.
+  clarityId: null,
+
   // ── Theme ─────────────────────────────────────────────────
   // Accent colour in dark mode and light mode. Any valid CSS hex colour.
   accentDark:  "#F5A623",
