@@ -759,7 +759,10 @@ input, textarea { font: inherit; }
   background: var(--card);
   border: 2px solid transparent;
   transition: border-color .2s var(--ease), background .2s var(--ease);
+  animation: fadeUp .6s var(--ease) both;
 }
+
+.cert-card:nth-child(2) { animation-delay: .1s; }
 
 .cert-card:hover {
   border-color: var(--accent);

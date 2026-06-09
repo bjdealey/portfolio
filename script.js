@@ -248,7 +248,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
 document.querySelectorAll(
-  '.expertise-card, .work-card, .cert-card, .testimonial-card, .about-grid, .contact-inner'
+  '.expertise-card, .work-card, .testimonial-card, .about-grid, .contact-inner'
 ).forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);
