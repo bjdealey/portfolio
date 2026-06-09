@@ -24,6 +24,7 @@ function populate() {
   el('nav-initials').textContent  = C.initials;
   el('footer-initials').textContent = C.initials;
   el('nav-cta').textContent = C.hireMeText;
+  el('nav-cta').dataset.umamiEvent = 'Nav: Hire Me';
 
   // Hero
   el('hero-availability').textContent = C.availableForWork ? 'Available for work' : 'Currently unavailable';
@@ -104,7 +105,7 @@ function populate() {
         </div>
         <h3>${p.title}</h3>
         <p>${p.description}</p>
-        <a href="${p.linkHref}" class="work-link" ${p.linkHref.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
+        <a href="${p.linkHref}" class="work-link" ${p.linkHref.startsWith('http') ? 'target="_blank" rel="noopener"' : ''} data-umami-event="Project: ${p.title}">
           ${p.linkText} ${arrowSvg()}
         </a>
       </div>
@@ -151,11 +152,11 @@ function populate() {
   // Contact
   el('contact-sub').textContent = C.contact.subtitle;
   el('contact-links').innerHTML = [
-    { icon: emailSvg(),  href: `mailto:${C.email}`,  label: C.email },
-    { icon: githubSvg(), href: C.github,              label: C.github.replace('https://', '') },
-    ...(C.linkedin ? [{ icon: linkedinSvg(), href: C.linkedin, label: C.linkedin.replace('https://', '') }] : []),
+    { icon: emailSvg(),    href: `mailto:${C.email}`, label: C.email,                             event: 'Contact: Email' },
+    { icon: githubSvg(),   href: C.github,             label: C.github.replace('https://', ''),   event: 'Contact: GitHub' },
+    ...(C.linkedin ? [{ icon: linkedinSvg(), href: C.linkedin, label: C.linkedin.replace('https://', ''), event: 'Contact: LinkedIn' }] : []),
   ].map(l => `
-    <a href="${l.href}" class="contact-link" ${l.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
+    <a href="${l.href}" class="contact-link" ${l.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''} data-umami-event="${l.event}">
       ${l.icon} ${l.label}
     </a>`
   ).join('');
@@ -164,7 +165,7 @@ function populate() {
   el('footer-name').textContent  = C.name;
   el('footer-copy').textContent  = `© ${C.footer.year} ${C.name}. All rights reserved.`;
   el('footer-links').innerHTML = C.footer.links.map(l => `
-    <a href="${l.href}" ${l.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>${l.label}</a>`
+    <a href="${l.href}" ${l.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''} data-umami-event="Footer: ${l.label}">${l.label}</a>`
   ).join('');
 }
 
@@ -341,6 +342,7 @@ if (form) {
         form.reset();
         success.textContent = "Message sent! I'll be in touch soon.";
         success.style.color = '';
+        if (window.umami) umami.track('Contact Form: Submitted');
       } else {
         success.textContent = 'Something went wrong — please email me directly.';
         success.style.color = '#f87171';
