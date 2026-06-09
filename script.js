@@ -177,8 +177,8 @@ function populate() {
   document.title = `${C.name} — Portfolio`;
 
   // Nav
-  el('nav-initials').textContent   = C.initials;
-  el('nav-fullname').textContent   = C.name.split(' ').join('');
+  el('nav-initials').textContent    = C.initials;
+  el('nav-fullname').textContent    = C.name;
   el('footer-initials').textContent = C.initials;
   el('nav-cta').textContent = C.hireMeText;
   el('nav-cta').dataset.umamiEvent = 'Nav: Hire Me';
@@ -580,10 +580,27 @@ function applySections() {
 
 // ── RUN ───────────────────────────────────────────────────────────────────────
 
+function setupLogoExpand() {
+  const navLogo = document.querySelector('.nav-logo');
+  const attr    = document.querySelector('.logo-tag-attr');
+  if (!navLogo || !attr) return;
+
+  // Measure natural width with transition disabled so nothing animates
+  attr.style.transition = 'none';
+  attr.style.width      = 'auto';
+  const w = attr.offsetWidth;   // forces layout, reads true content width
+  attr.style.width      = '0';
+  requestAnimationFrame(() => { attr.style.transition = ''; });
+
+  navLogo.addEventListener('mouseenter', () => { attr.style.width = w + 'px'; });
+  navLogo.addEventListener('mouseleave', () => { attr.style.width = '0'; });
+}
+
 loadClarity();
 applyTheme();
 applySections();
 populate();
+setupLogoExpand();
 loadGithubStats();
 loadCalAvailability();
 buildTicker();
