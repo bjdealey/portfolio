@@ -5,9 +5,13 @@ if (location.hash) history.replaceState(null, '', location.pathname + location.s
 
 function jumpToTop() {
   document.documentElement.style.scrollBehavior = 'auto';
+  document.documentElement.style.scrollSnapType = 'none';
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
-  requestAnimationFrame(() => document.documentElement.style.scrollBehavior = '');
+  requestAnimationFrame(() => {
+    document.documentElement.style.scrollBehavior = '';
+    document.documentElement.style.scrollSnapType = '';
+  });
 }
 
 jumpToTop();
