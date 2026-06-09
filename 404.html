@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page Not Found · Brad Dealey</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .error-code {
+      font-family: var(--mono);
+      font-size: clamp(6rem, 20vw, 12rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent);
+      letter-spacing: -.02em;
+      margin-bottom: 8px;
+    }
+    .error-label {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-bottom: 32px;
+    }
+    .error-title {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .error-sub {
+      color: var(--fg-muted);
+      max-width: 380px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .error-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 0 auto 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <p class="error-label">Error</p>
+    <div class="error-code">404</div>
+    <div class="error-rule"></div>
+    <h1 class="error-title">Page not found.</h1>
+    <p class="error-sub">The page you're looking for doesn't exist or has been moved.</p>
+    <a href="/" class="btn btn-primary">Back to Home</a>
+  </div>
+</body>
+</html>
