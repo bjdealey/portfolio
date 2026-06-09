@@ -2,9 +2,17 @@
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 if (location.hash) history.replaceState(null, '', location.pathname + location.search);
-window.scrollTo(0, 0);
+
+function jumpToTop() {
+  document.documentElement.style.scrollBehavior = 'auto';
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  requestAnimationFrame(() => document.documentElement.style.scrollBehavior = '');
+}
+
+jumpToTop();
 // iOS Safari restores scroll asynchronously — pageshow + setTimeout runs after it
-window.addEventListener('pageshow', () => setTimeout(() => window.scrollTo(0, 0), 0));
+window.addEventListener('pageshow', () => setTimeout(jumpToTop, 50));
 
 // ── HELPERS ──────────────────────────────────────────────────────────────────
 
