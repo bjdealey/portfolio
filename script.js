@@ -457,51 +457,16 @@ function initCursorGlow() {
 // ── CAL.COM LIVE AVAILABILITY ────────────────────────────────────────────────
 
 async function loadCalAvailability() {
-  const calLink = CONTENT.calLink;
-  if (!calLink) return;
-  const match = calLink.match(/cal\.com\/([^/]+)\/([^/?]+)/);
-  if (!match) return;
-  const [, username, eventSlug] = match;
-
+  if (!CONTENT.calLink) return;
   try {
-    const now     = new Date();
-    const horizon = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000);
-    const input   = JSON.stringify({
-      json: {
-        usernameList: [username],
-        eventTypeSlug: eventSlug,
-        startTime: now.toISOString(),
-        endTime:   horizon.toISOString(),
-        timeZone:  Intl.DateTimeFormat().resolvedOptions().timeZone,
-        isTeamEvent: false,
-        orgSlug: null,
-      }
-    });
-    const res = await fetch(
-      `https://app.cal.com/api/trpc/public/slots.getSchedule?input=${encodeURIComponent(input)}`
-    );
+    const res  = await fetch('availability.json');
     if (!res.ok) return;
-    const data  = await res.json();
-    const slots = data?.result?.data?.json?.slots || {};
-    const dates = Object.keys(slots).filter(d => slots[d].length > 0).sort();
-
-    const dot   = document.querySelector('.hero-eyebrow .dot');
+    const data = await res.json();
+    if (!data.text) return;
     const label = el('hero-availability');
-    if (!label) return;
-
-    if (dates.length === 0) {
-      label.textContent = 'Fully booked — check back soon';
-      if (dot) dot.style.background = dot.style.boxShadow = '';
-    } else {
-      const weekOut  = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-      const thisWeek = dates[0] <= weekOut;
-      if (thisWeek) {
-        label.textContent = 'Available this week';
-      } else {
-        const next = new Date(dates[0] + 'T12:00:00');
-        label.textContent = `Available from ${next.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}`;
-      }
-    }
+    const dot   = document.querySelector('.hero-eyebrow .dot');
+    if (label) label.textContent = data.text;
+    if (dot)   dot.style.display = data.status === 'unavailable' ? 'none' : '';
   } catch {
     // silently fall back to static value from content.js
   }

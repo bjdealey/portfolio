@@ -1,0 +1,88 @@
+name: Update availability
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # every 30 minutes
+  workflow_dispatch:           # manual trigger from GitHub Actions tab
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch Cal.com availability
+        env:
+          CAL_API_KEY: ${{ secrets.CAL_API_KEY }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, sys, urllib.request
+          from datetime import datetime, timedelta, timezone
+
+          api_key = os.environ.get('CAL_API_KEY', '')
+          if not api_key:
+              print('No API key — skipping')
+              sys.exit(0)
+
+          base = 'https://api.cal.com/v1'
+
+          def get(path):
+              req = urllib.request.Request(f'{base}{path}', headers={'Content-Type': 'application/json'})
+              with urllib.request.urlopen(req) as r:
+                  return json.loads(r.read())
+
+          # Discover the 30-min event type ID
+          try:
+              event_types = get(f'/event-types?apiKey={api_key}')
+              et_list = event_types.get('event_types', event_types.get('eventTypes', []))
+              event_type_id = next(
+                  (e['id'] for e in et_list if e.get('slug') == '30min' or e.get('length') == 30),
+                  None
+              )
+          except Exception as err:
+              print(f'Could not fetch event types: {err}')
+              sys.exit(0)
+
+          if not event_type_id:
+              print('30-min event type not found')
+              sys.exit(0)
+
+          # Fetch available slots over next 14 days
+          now = datetime.now(timezone.utc)
+          end = now + timedelta(days=14)
+          try:
+              data  = get(f'/slots/available?apiKey={api_key}&eventTypeId={event_type_id}'
+                          f'&startTime={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
+                          f'&endTime={end.strftime("%Y-%m-%dT%H:%M:%SZ")}')
+              slots = data.get('slots', {})
+          except Exception as err:
+              print(f'Could not fetch slots: {err}')
+              sys.exit(0)
+
+          available = sorted(d for d, s in slots.items() if s)
+
+          if not available:
+              result = {'status': 'unavailable', 'text': 'Fully booked — check back soon'}
+          else:
+              week_end  = now + timedelta(days=7)
+              first     = datetime.fromisoformat(available[0]).replace(tzinfo=timezone.utc)
+              if first <= week_end:
+                  result = {'status': 'available', 'text': 'Available this week'}
+              else:
+                  label  = first.strftime('%-d %b').lstrip('0')
+                  result = {'status': 'soon', 'text': f'Available from {first.strftime("%a")} {label}'}
+
+          with open('availability.json', 'w') as f:
+              json.dump(result, f)
+          print(f'Written: {result}')
+          EOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add availability.json
+          git diff --cached --quiet || git commit -m "Update availability status" && git push
