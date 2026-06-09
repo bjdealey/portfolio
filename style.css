@@ -1061,21 +1061,21 @@ body.loaded .hero-scroll   { animation: fadeUp .5s var(--ease) 0.9s   forwards; 
   .form-group input,
   .form-group textarea { background: rgba(0,0,0,.04); }
 
-  /* button text + hover states — replace hardcoded amber with green */
+  /* button text + hover states */
   .btn-primary               { color: #fff; }
-  .btn-primary:hover         { background: #1e7a42; border-color: #1e7a42;
-                               box-shadow: 0 8px 28px rgba(42,96,65,.3); }
-  .btn-download:hover        { color: #fff; box-shadow: 0 8px 28px rgba(42,96,65,.2); }
-  .logo-circle:hover         { background: #1e7a42; box-shadow: 0 0 16px rgba(42,96,65,.3); }
+  .btn-primary:hover         { background: var(--accent); border-color: var(--accent);
+                               box-shadow: 0 8px 28px var(--accent-dim); }
+  .btn-download:hover        { color: #fff; box-shadow: 0 8px 28px var(--accent-dim); }
+  .logo-circle:hover         { background: var(--accent); box-shadow: 0 0 16px var(--accent-dim); }
   .nav-cta:hover             { color: #fff; }
 
-  /* work tag — amber border → green */
+  /* work tag */
   .work-tag { border-color: var(--accent-dim); }
 
-  /* hero decorative elements — hardcoded amber → green */
-  .hero-glow  { background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); }
+  /* hero decorative elements */
+  .hero-glow   { background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); }
   .hero-glow-2 { background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); }
-  .hero-deco  { background-image: radial-gradient(circle, rgba(42,96,65,.2) 1.5px, transparent 1.5px); }
+  .hero-deco   { background-image: radial-gradient(circle, var(--accent-glow) 1.5px, transparent 1.5px); }
 
   /* cursor glow doesn't work on light backgrounds */
   .cursor-glow { display: none; }

@@ -385,8 +385,60 @@ function initCursorGlow() {
   });
 }
 
-// ── RUN POPULATE FIRST ────────────────────────────────────────────────────────
+// ── THEME ─────────────────────────────────────────────────────────────────────
 
+function applyTheme() {
+  const dark  = (CONTENT.accentDark  || '#F5A623').trim();
+  const light = (CONTENT.accentLight || '#2A6041').trim();
+
+  function toRgba(hex, a) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `rgba(${r},${g},${b},${a})`;
+  }
+
+  const s = document.createElement('style');
+  s.textContent = `
+    :root {
+      --accent:     ${dark};
+      --accent-dim: ${toRgba(dark, .15)};
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --accent:      ${light};
+        --accent-dim:  ${toRgba(light, .09)};
+        --accent-glow: ${toRgba(light, .12)};
+      }
+    }
+  `;
+  document.head.appendChild(s);
+}
+
+// ── SECTION VISIBILITY ────────────────────────────────────────────────────────
+
+function applySections() {
+  const S = CONTENT.sections || {};
+  const map = {
+    stats:          '.stats-strip',
+    ticker:         '.ticker',
+    timeline:       '.timeline-section',
+    expertise:      '.expertise',
+    work:           '.work',
+    certifications: '.certifications',
+  };
+  Object.entries(map).forEach(([key, sel]) => {
+    if (S[key] === false) {
+      const node = document.querySelector(sel);
+      if (node) node.style.display = 'none';
+    }
+  });
+}
+
+// ── RUN ───────────────────────────────────────────────────────────────────────
+
+applyTheme();
+applySections();
 populate();
 buildTicker();
 initCursorGlow();

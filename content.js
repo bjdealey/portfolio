@@ -15,6 +15,22 @@ const CONTENT = {
   hireMeText: "Hire Me",
   cvFile: "cv.html",  // CV page; set to null to hide the download buttons
 
+  // ── Theme ─────────────────────────────────────────────────
+  // Accent colour in dark mode and light mode. Any valid CSS hex colour.
+  accentDark:  "#F5A623",
+  accentLight: "#2A6041",
+
+  // ── Section visibility ────────────────────────────────────
+  // Set any section to false to hide it entirely.
+  sections: {
+    stats:          true,
+    ticker:         true,
+    timeline:       true,
+    expertise:      true,
+    work:           true,
+    certifications: true,
+  },
+
   // Skills shown in the scrolling ticker strip
   ticker: [
     "RPA", "Automation Anywhere", "Power Automate", "JavaScript",
