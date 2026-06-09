@@ -76,7 +76,7 @@ input, textarea { font: inherit; }
   border-radius: 50%;
   background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
   pointer-events: none;
-  z-index: 1;
+  z-index: 0;
   transform: translate(-50%, -50%);
   mix-blend-mode: screen;
   transition: left .12s ease, top .12s ease,
