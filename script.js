@@ -177,7 +177,6 @@ function populate() {
   document.title = `${C.name} — Portfolio`;
 
   // Nav
-  document.querySelectorAll('.logo-text').forEach(e => e.textContent = C.initials);
   el('nav-initials').textContent  = C.initials;
   el('footer-initials').textContent = C.initials;
   el('nav-cta').textContent = C.hireMeText;

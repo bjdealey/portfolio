@@ -101,11 +101,10 @@ const CONTENT = {
 
   // Skills shown in the scrolling ticker strip
   ticker: [
-    "RPA", "Automation Anywhere", "Power Automate", "JavaScript",
-    "React Native", "TypeScript", "Supabase", "Kofax TotalAgility",
-    "Azure DevOps", "REST APIs", "Expo", "Power Platform",
-    "Active Directory", "Process Automation", "App Development",
-    "Power Apps", "SharePoint", "Microsoft 365",
+    "RPA", "Process Automation", "Automation Anywhere", "Power Automate",
+    "Kofax TotalAgility", "Power Platform", "Azure DevOps", "Power Apps",
+    "Microsoft 365", "SharePoint", "REST APIs", "JavaScript",
+    "TypeScript", "Active Directory",
   ],
 
   // ── Hero ──────────────────────────────────────────────────
@@ -113,9 +112,9 @@ const CONTENT = {
     titleLine1: "Solving problems,",
     titleAccent: "one script at a time.",
     subtitle:
-      "Automation Engineer at Sytner Group and full-stack app developer. " +
-      "I specialise in RPA, Power Platform, and building apps with React Native — " +
-      "automating the tedious and making ideas real.",
+      "Automation Engineer at Sytner Group, available for RPA consulting. " +
+      "I design and deploy bots that eliminate manual work — document processing, " +
+      "cross-system integrations, and anything repetitive that's costing your team time.",
   },
 
   // ── Stats strip ───────────────────────────────────────────
@@ -134,22 +133,23 @@ const CONTENT = {
       "I'm an Automation Engineer at Sytner Group, where I specialise in " +
       "building bots and streamlining processes using Automation Anywhere, " +
       "Power Automate, and Kofax TotalAgility. My work focuses on improving " +
-      "operational efficiency and customer experience.",
+      "operational efficiency and accuracy across a large, complex organisation.",
 
-      "Outside of work I design and build full-stack mobile apps with React " +
-      "Native, TypeScript, and modern API integrations. JavaScript runs through " +
-      "both sides of my work, and I'm always learning new tools by actually " +
-      "building with them.",
+      "I also bring a software developer's background to every engagement — " +
+      "comfortable scripting custom logic, consuming APIs, and handling " +
+      "integrations that off-the-shelf RPA tooling can't reach alone. That " +
+      "depth is what separates bots that work in a demo from ones that run " +
+      "reliably in production.",
     ],
     tags: [
       "RPA",
       "Automation Anywhere",
       "Power Automate",
-      "JavaScript",
-      "React Native",
-      "Supabase",
       "Kofax TotalAgility",
+      "Power Platform",
       "Azure DevOps",
+      "REST APIs",
+      "JavaScript",
     ],
   },
 
@@ -215,16 +215,16 @@ const CONTENT = {
       ],
     },
     {
-      title: "App Development",
+      title: "Technical Integration",
       description:
-        "Full-stack mobile and web apps built with modern tooling. " +
-        "I learn by building — often taking an idea from zero to working " +
-        "product solo.",
+        "RPA bots rarely exist in isolation — they consume APIs, transform " +
+        "data, and connect systems built by other teams. A developer's " +
+        "background means those integrations get built properly, not worked around.",
       items: [
-        "React Native / Expo",
-        "Supabase",
-        "REST APIs",
-        "JavaScript / Node.js",
+        "REST APIs & webhooks",
+        "Custom scripting (JS / VBA)",
+        "Data transformation & mapping",
+        "System integration & debugging",
       ],
     },
     {
@@ -246,38 +246,37 @@ const CONTENT = {
   projects: [
     {
       featured: true,
+      visual:  "flow",
+      tags:    ["RPA", "Automation Anywhere", "Power Automate"],
+      title:   "Enterprise Automation",
+      description:
+        "Production bot development at Sytner Group — automating document " +
+        "processing, cross-system data flows, and operational reporting across " +
+        "a large dealership network. Built and maintained using Automation " +
+        "Anywhere A360, Power Automate, and Kofax TotalAgility.",
+      linkText: "View LinkedIn",
+      linkHref: "https://www.linkedin.com/in/brad-dealey/",
+    },
+    {
       visual:  "phone-cards",
-      tags:    ["React Native", "TypeScript", "Mobile"],
+      tags:    ["React Native", "TypeScript", "Personal"],
       title:   "Kamika",
       description:
-        "A mobile app for Pokémon TCG collectors — track, value, and celebrate " +
-        "your card collection all in one place. Features smart card search, live " +
-        "price tracking powered by real-time market data, Pokédex completion " +
-        "tracking, custom folder organisation, and multi-currency value display. " +
-        "Built with React Native and TypeScript.",
+        "Personal project — a Pokémon TCG collector app with live price tracking, " +
+        "Pokédex completion tracking, and multi-currency value display. Built to " +
+        "stay sharp on full-stack mobile development with React Native and TypeScript.",
       linkText: "View on GitHub",
       linkHref: "https://github.com/bjdealey/Kamika",
     },
     {
       visual:  "phone-list",
-      tags:    ["React Native", "Expo", "TypeScript"],
+      tags:    ["React Native", "Expo", "Personal"],
       title:   "Pokevault",
       description:
-        "A React Native (Expo) mobile app built with TypeScript and Tamagui. " +
-        "Another personal project exploring cross-platform UI and state management.",
+        "Personal project — a React Native (Expo) app built with TypeScript and " +
+        "Tamagui, exploring cross-platform UI and state management patterns.",
       linkText: "View on GitHub",
       linkHref: "https://github.com/bjdealey/pokevault",
-    },
-    {
-      visual:  "flow",
-      tags:    ["RPA", "Professional", "Sytner Group"],
-      title:   "Enterprise Automation",
-      description:
-        "Bot development and process automation at Sytner Group — " +
-        "streamlining operations across the business using Automation " +
-        "Anywhere, Power Automate, and Kofax TotalAgility.",
-      linkText: "View LinkedIn",
-      linkHref: "https://www.linkedin.com/in/brad-dealey/",
     },
   ],
 
