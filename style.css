@@ -1014,3 +1014,29 @@ body.loaded .hero-title    { animation: fadeUp .7s var(--ease) 0.35s  forwards; 
 body.loaded .hero-sub      { animation: fadeUp .6s var(--ease) 0.55s  forwards; }
 body.loaded .hero-actions  { animation: fadeUp .6s var(--ease) 0.7s   forwards; }
 body.loaded .hero-scroll   { animation: fadeUp .5s var(--ease) 0.9s   forwards; }
+
+/* ── LIGHT MODE ── */
+@media (prefers-color-scheme: light) {
+  :root {
+    --accent:      #B87000;
+    --accent-dim:  rgba(184,112,0,.08);
+    --accent-glow: rgba(184,112,0,.14);
+    --black:       #F7F4EF;
+    --dark:        #EDE9E2;
+    --card:        #FDFCFA;
+    --border:      #DDD8CF;
+    --border-hi:   #C5BDB3;
+    --fg:          #1A1208;
+    --fg-muted:    rgba(26,18,8,.5);
+    --fg-faint:    rgba(26,18,8,.1);
+  }
+
+  /* hardcoded dark values that need overriding */
+  .nav.scrolled        { background: rgba(247,244,239,.93); }
+  .nav-mobile          { background: rgba(247,244,239,.98); }
+  .about-img-badge     { background: rgba(247,244,239,.92); }
+
+  /* cursor glow: screen blend mode disappears on light bg */
+  .cursor-glow         { mix-blend-mode: multiply; }
+  .cursor-glow.snapped { background: radial-gradient(circle, rgba(184,112,0,.1) 0%, transparent 60%); }
+}
