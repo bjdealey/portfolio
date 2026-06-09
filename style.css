@@ -211,6 +211,12 @@ input, textarea { font: inherit; }
 .logo-tag--lg { font-size: 1.6rem; }
 .logo-tag-bracket { color: var(--accent); }
 .logo-tag-name { color: var(--fg); }
+.logo-tag-short,
+.logo-tag-full  { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: bottom; color: var(--fg); }
+.logo-tag-short { max-width: 6em; transition: max-width .2s ease, opacity .15s ease; }
+.logo-tag-full  { max-width: 0; opacity: 0; transition: max-width .35s ease, opacity .2s ease .1s; }
+.nav-logo:hover .logo-tag-short { max-width: 0; opacity: 0; }
+.nav-logo:hover .logo-tag-full  { max-width: 10em; opacity: 1; }
 .nav-logo:hover .logo-tag-bracket { text-shadow: 0 0 14px var(--accent); }
 
 .nav-links { display: flex; gap: 36px; margin-left: auto; }

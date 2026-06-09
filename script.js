@@ -177,7 +177,8 @@ function populate() {
   document.title = `${C.name} — Portfolio`;
 
   // Nav
-  el('nav-initials').textContent  = C.initials;
+  el('nav-initials').textContent   = C.initials;
+  el('nav-fullname').textContent   = C.name.split(' ').join('');
   el('footer-initials').textContent = C.initials;
   el('nav-cta').textContent = C.hireMeText;
   el('nav-cta').dataset.umamiEvent = 'Nav: Hire Me';
