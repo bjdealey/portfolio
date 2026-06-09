@@ -74,25 +74,31 @@ const CONTENT = {
     {
       role:    "Automation Engineer",
       company: "Sytner Group",
-      period:  "2023 – Present",
+      period:  "Jun 2023 – Present",
       description:
-        "Building and deploying RPA bots across the business using Automation " +
-        "Anywhere, Power Automate, and Kofax TotalAgility. Focused on operational " +
-        "efficiency, document processing, and cross-system automation.",
+        "Designing and deploying RPA bots across the business using Automation " +
+        "Anywhere, Power Automate, and Kofax TotalAgility. Focused on document " +
+        "processing, cross-system data flows, and improving operational efficiency " +
+        "at scale. Working hybrid from Leicester.",
     },
     {
-      role:    "ROLE TITLE",         // ← fill in
-      company: "COMPANY NAME",       // ← fill in
-      period:  "20XX – 20XX",        // ← fill in
+      role:    "Service Desk Analyst",
+      company: "Sytner Group",
+      period:  "Jun 2022 – Jun 2023",
       description:
-        "Brief description of your responsibilities and achievements here.",
+        "Front-line IT support across the Sytner Group estate. Handling incidents, " +
+        "service requests, and escalations while picking up Power Automate and RPA — " +
+        "the role that led directly into automation engineering.",
     },
     {
-      role:    "ROLE TITLE",         // ← fill in
-      company: "COMPANY NAME",       // ← fill in
-      period:  "20XX – 20XX",        // ← fill in
+      role:    "IT Technician",
+      company: "North Warwickshire and South Leicestershire College",
+      period:  "Feb 2020 – Jun 2022",
       description:
-        "Brief description of your responsibilities and achievements here.",
+        "On-site IT support across the college — managing Active Directory, " +
+        "Microsoft Endpoint Configuration Manager, and day-to-day systems " +
+        "administration. Built the foundation in infrastructure that underpins " +
+        "everything since.",
     },
   ],
 
