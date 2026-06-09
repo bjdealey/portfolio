@@ -205,6 +205,7 @@ const CONTENT = {
       issuerInitials: "AA",
       issued:       "Feb 2025",
       credentialId: "132168444",
+      credentialUrl: "https://certificates.automationanywhere.com/17865f3c-b70a-42f0-9924-c95a5a184c36",
     },
     {
       title:        "Automation Anywhere RPA Essentials for Students (Automation 360)",
@@ -212,6 +213,7 @@ const CONTENT = {
       issuerInitials: "AA",
       issued:       "Mar 2023",
       credentialId: "70954925",
+      credentialUrl: "https://certificates.automationanywhere.com/ba5c0f35-6604-4d0a-b038-67344ec8b79e#acc.RQYN6fnK",
     },
   ],
 

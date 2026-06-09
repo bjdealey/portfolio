@@ -244,6 +244,7 @@ function populate() {
             <span class="cert-date">Issued ${c.issued}</span>
             <span class="cert-id">ID&nbsp;${c.credentialId}</span>
           </div>
+          ${c.credentialUrl ? `<a href="${c.credentialUrl}" class="cert-link" target="_blank" rel="noopener" data-umami-event="Cert: ${c.title}">View credential →</a>` : ''}
         </div>
       </div>`
     ).join('');

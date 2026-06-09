@@ -349,7 +349,9 @@
           <div class="cv-section-title">Certifications</div>
           ${C.certifications.map(c => `
             <div class="cv-cert">
-              <div class="cv-cert-title">${esc(c.title)}</div>
+              <div class="cv-cert-title">
+                ${c.credentialUrl ? `<a href="${esc(c.credentialUrl)}" target="_blank">${esc(c.title)}</a>` : esc(c.title)}
+              </div>
               <div class="cv-cert-meta">${esc(c.issuer)}<br>${esc(c.issued)}</div>
             </div>
           `).join('')}

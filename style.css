@@ -961,6 +961,18 @@ input, textarea { font: inherit; }
   color: var(--border-hi);
 }
 
+.cert-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: opacity .15s;
+}
+.cert-link:hover { opacity: .7; }
+
 /* ── PAGE LOAD ANIMATION ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(22px); }
