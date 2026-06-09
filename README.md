@@ -1,5 +1,7 @@
 # Brad Dealey — Portfolio
 
+**Live:** https://bjdealey.github.io/portfolio/
+
 Personal portfolio website. Built with plain HTML, CSS, and vanilla JavaScript — no frameworks, no build step, no dependencies.
 
 ## Stack
