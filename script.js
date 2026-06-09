@@ -1,5 +1,7 @@
 'use strict';
 
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 // ── HELPERS ──────────────────────────────────────────────────────────────────
 
 function el(id) { return document.getElementById(id); }
@@ -148,6 +150,9 @@ function populate() {
   el('footer-initials').textContent = C.initials;
   el('nav-cta').textContent = C.hireMeText;
   el('nav-cta').dataset.umamiEvent = 'Nav: Hire Me';
+  el('nav-cta').addEventListener('click', () => {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  });
 
   // Hero
   el('hero-availability').textContent = C.availableForWork ? 'Available for work' : 'Currently unavailable';
