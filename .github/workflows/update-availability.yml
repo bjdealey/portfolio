@@ -27,19 +27,26 @@ jobs:
               print('No API key — skipping')
               sys.exit(0)
 
-          base = 'https://api.cal.com/v1'
+          base    = 'https://api.cal.com/v2'
+          headers = {
+              'Authorization': f'Bearer {api_key}',
+              'cal-api-version': '2024-09-04',
+              'Content-Type': 'application/json',
+          }
 
           def get(path):
-              req = urllib.request.Request(f'{base}{path}', headers={'Content-Type': 'application/json'})
+              req = urllib.request.Request(f'{base}{path}', headers=headers)
               with urllib.request.urlopen(req) as r:
                   return json.loads(r.read())
 
           # Discover the 30-min event type ID
           try:
-              event_types = get(f'/event-types?apiKey={api_key}')
-              et_list = event_types.get('event_types', event_types.get('eventTypes', []))
+              resp    = get('/event-types')
+              et_list = resp.get('data', {}).get('eventTypeGroups', [])
+              # flatten all event types across groups
+              all_ets = [et for group in et_list for et in group.get('eventTypes', [])]
               event_type_id = next(
-                  (e['id'] for e in et_list if e.get('slug') == '30min' or e.get('length') == 30),
+                  (e['id'] for e in all_ets if e.get('slug') == '30min' or e.get('length') == 30),
                   None
               )
           except Exception as err:
@@ -54,10 +61,10 @@ jobs:
           now = datetime.now(timezone.utc)
           end = now + timedelta(days=14)
           try:
-              data  = get(f'/slots/available?apiKey={api_key}&eventTypeId={event_type_id}'
-                          f'&startTime={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
-                          f'&endTime={end.strftime("%Y-%m-%dT%H:%M:%SZ")}')
-              slots = data.get('slots', {})
+              data  = get(f'/slots/available?eventTypeId={event_type_id}'
+                          f'&start={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
+                          f'&end={end.strftime("%Y-%m-%dT%H:%M:%SZ")}')
+              slots = data.get('data', {}).get('slots', {})
           except Exception as err:
               print(f'Could not fetch slots: {err}')
               sys.exit(0)
@@ -67,12 +74,12 @@ jobs:
           if not available:
               result = {'status': 'unavailable', 'text': 'Fully booked — check back soon'}
           else:
-              week_end  = now + timedelta(days=7)
-              first     = datetime.fromisoformat(available[0]).replace(tzinfo=timezone.utc)
+              week_end = now + timedelta(days=7)
+              first    = datetime.fromisoformat(available[0]).replace(tzinfo=timezone.utc)
               if first <= week_end:
                   result = {'status': 'available', 'text': 'Available this week'}
               else:
-                  label  = first.strftime('%-d %b').lstrip('0')
+                  label  = first.strftime('%-d %b')
                   result = {'status': 'soon', 'text': f'Available from {first.strftime("%a")} {label}'}
 
           with open('availability.json', 'w') as f:
