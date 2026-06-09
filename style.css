@@ -293,18 +293,13 @@ input, textarea { font: inherit; }
   overflow: hidden;
 }
 .hero-bg { position: absolute; inset: 0; pointer-events: none; }
-@keyframes glowFloat1 {
-  0%, 100% { transform: translate(0, 0); }
-  20%       { transform: translate(70px, -80px); }
-  40%       { transform: translate(120px, 50px); }
-  60%       { transform: translate(30px, 110px); }
-  80%       { transform: translate(-50px, 30px); }
+@keyframes glowBreathe {
+  0%, 100% { transform: scale(1);   opacity: .9; }
+  50%       { transform: scale(1.7); opacity: .25; }
 }
-@keyframes glowFloat2 {
-  0%, 100% { transform: translate(0, 0); }
-  25%       { transform: translate(-90px, 70px); }
-  50%       { transform: translate(-10px, -100px); }
-  75%       { transform: translate(80px, 20px); }
+@keyframes glowBreathe2 {
+  0%, 100% { transform: scale(1.5); opacity: .3; }
+  50%       { transform: scale(1);   opacity: .8; }
 }
 
 .hero-grid {
@@ -318,19 +313,21 @@ input, textarea { font: inherit; }
 }
 .hero-glow {
   position: absolute;
-  top: 25%; left: 35%;
-  width: 700px; height: 500px;
-  background: radial-gradient(ellipse, rgba(245,166,35,.14) 0%, rgba(245,166,35,.05) 40%, transparent 70%);
-  will-change: transform;
-  animation: glowFloat1 8s ease-in-out infinite;
+  top: 10%; left: 20%;
+  width: 700px; height: 550px;
+  background: radial-gradient(ellipse, rgba(245,166,35,.22) 0%, transparent 65%);
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation: glowBreathe 5s ease-in-out infinite;
 }
 .hero-glow-2 {
   position: absolute;
-  top: 45%; right: 15%;
-  width: 500px; height: 380px;
-  background: radial-gradient(ellipse, rgba(245,166,35,.10) 0%, rgba(245,166,35,.03) 40%, transparent 70%);
-  will-change: transform;
-  animation: glowFloat2 11s ease-in-out infinite;
+  top: 35%; right: 5%;
+  width: 550px; height: 450px;
+  background: radial-gradient(ellipse, rgba(245,166,35,.18) 0%, transparent 65%);
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation: glowBreathe2 7s ease-in-out infinite;
 }
 /* dot-grid decoration on the right */
 .hero-deco {
