@@ -346,13 +346,43 @@ function initCursorGlow() {
   glow.className = 'cursor-glow';
   glow.setAttribute('aria-hidden', 'true');
   document.body.prepend(glow);
-  let tx = -999, ty = -999;
+
+  let cx = -999, cy = -999, tracking = true;
+
   window.addEventListener('mousemove', e => {
-    tx = e.clientX;
-    ty = e.clientY;
-    glow.style.left = tx + 'px';
-    glow.style.top  = ty + 'px';
+    cx = e.clientX;
+    cy = e.clientY;
+    if (tracking) {
+      glow.style.left = cx + 'px';
+      glow.style.top  = cy + 'px';
+    }
   }, { passive: true });
+
+  const snapTargets = document.querySelectorAll(
+    '.expertise-card, .work-card, .cert-card, .btn, .contact-link, .nav-links a, .footer-links a, .work-link, .cert-link, .timeline-role'
+  );
+
+  snapTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      tracking = false;
+      const r    = el.getBoundingClientRect();
+      const size = Math.max(r.width, r.height) * 1.6;
+      glow.style.width  = size + 'px';
+      glow.style.height = size + 'px';
+      glow.style.left   = (r.left + r.width  / 2) + 'px';
+      glow.style.top    = (r.top  + r.height / 2) + 'px';
+      glow.classList.add('snapped');
+    });
+
+    el.addEventListener('mouseleave', () => {
+      glow.classList.remove('snapped');
+      glow.style.width  = '';
+      glow.style.height = '';
+      glow.style.left   = cx + 'px';
+      glow.style.top    = cy + 'px';
+      tracking = true;
+    });
+  });
 }
 
 // ── RUN POPULATE FIRST ────────────────────────────────────────────────────────
