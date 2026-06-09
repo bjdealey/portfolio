@@ -22,7 +22,7 @@ const CONTENT = {
 
   // Microsoft Clarity project ID — enables heatmaps + session recordings.
   // Find it at clarity.microsoft.com → your project → Setup → get the ID string.
-  clarityId: null,
+  clarityId: "x4i8nvzgus",
 
   // ── Theme ─────────────────────────────────────────────────
   // Accent colour in dark mode and light mode. Any valid CSS hex colour.
