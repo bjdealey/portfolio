@@ -18,40 +18,26 @@ jobs:
         env:
           CAL_API_KEY: ${{ secrets.CAL_API_KEY }}
         run: |
-          python3 - <<'EOF'
-          import json, os, sys, urllib.request
+          NOW=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          END=$(date -u -d "+14 days" +"%Y-%m-%dT%H:%M:%SZ")
+
+          RESPONSE=$(curl -s \
+            -H "Authorization: Bearer $CAL_API_KEY" \
+            -H "cal-api-version: 2024-06-14" \
+            "https://api.cal.com/v2/slots/available?eventTypeId=5955127&startTime=${NOW}&endTime=${END}")
+
+          python3 - "$RESPONSE" <<'EOF'
+          import json, sys
           from datetime import datetime, timedelta, timezone
 
-          api_key = os.environ.get('CAL_API_KEY', '')
-          if not api_key:
-              print('No API key — skipping')
-              sys.exit(0)
-
-          EVENT_TYPE_ID = 5955127  # bradjd/30min
-
-          headers = {
-              'Authorization': f'Bearer {api_key}',
-              'cal-api-version': '2024-06-14',
-          }
-
-          now = datetime.now(timezone.utc)
-          end = now + timedelta(days=14)
-          url = (
-              f'https://api.cal.com/v2/slots/available'
-              f'?eventTypeId={EVENT_TYPE_ID}'
-              f'&startTime={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
-              f'&endTime={end.strftime("%Y-%m-%dT%H:%M:%SZ")}'
-          )
-
           try:
-              req  = urllib.request.Request(url, headers=headers)
-              with urllib.request.urlopen(req) as r:
-                  data = json.loads(r.read())
+              data  = json.loads(sys.argv[1])
               slots = data.get('data', {}).get('slots', {})
           except Exception as err:
-              print(f'Could not fetch slots: {err}')
+              print(f'Parse error: {err}')
               sys.exit(0)
 
+          now       = datetime.now(timezone.utc)
           available = sorted(d for d, s in slots.items() if s)
           print(f'Available days in next 14: {len(available)}')
 
