@@ -113,6 +113,16 @@ input, textarea { font: inherit; }
   border-color: var(--fg-muted);
   transform: translateY(-1px);
 }
+.btn-download {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+.btn-download:hover {
+  background: var(--accent);
+  color: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(245,166,35,.25);
+}
 .btn-full { width: 100%; justify-content: center; }
 
 /* ── NAV ── */
@@ -443,6 +453,7 @@ input, textarea { font: inherit; }
 .about-text .section-title { margin-bottom: 24px; }
 .about-body { color: var(--fg-muted); line-height: 1.85; margin-bottom: 14px; font-size: .94rem; }
 .about-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+#about-cv-btn { margin-top: 28px; padding: 11px 22px; font-size: .7rem; }
 .tag {
   padding: 5px 12px;
   border: 1px solid var(--border-hi);

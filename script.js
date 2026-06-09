@@ -32,6 +32,14 @@ function populate() {
   el('hero-title-accent').textContent = C.hero.titleAccent;
   el('hero-sub').textContent          = C.hero.subtitle;
 
+  // CV download buttons
+  if (C.cvFile) {
+    ['hero-cv-btn', 'about-cv-btn'].forEach(id => {
+      const btn = el(id);
+      if (btn) { btn.href = C.cvFile; btn.style.display = ''; }
+    });
+  }
+
   // Stats
   el('stats-inner').innerHTML = C.stats.map((s, i) => `
     ${i > 0 ? '<div class="stat-div"></div>' : ''}
