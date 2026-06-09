@@ -30,7 +30,7 @@ jobs:
           base    = 'https://api.cal.com/v2'
           headers = {
               'Authorization': f'Bearer {api_key}',
-              'cal-api-version': '2024-09-04',
+              'cal-api-version': '2024-06-14',
               'Content-Type': 'application/json',
           }
 
@@ -42,11 +42,9 @@ jobs:
           # Discover the 30-min event type ID
           try:
               resp    = get('/event-types')
-              et_list = resp.get('data', {}).get('eventTypeGroups', [])
-              # flatten all event types across groups
-              all_ets = [et for group in et_list for et in group.get('eventTypes', [])]
+              et_list = resp.get('data', [])
               event_type_id = next(
-                  (e['id'] for e in all_ets if e.get('slug') == '30min' or e.get('length') == 30),
+                  (e['id'] for e in et_list if e.get('slug') == '30min' or e.get('lengthInMinutes') == 30),
                   None
               )
           except Exception as err:
@@ -57,19 +55,22 @@ jobs:
               print('30-min event type not found')
               sys.exit(0)
 
+          print(f'Event type ID: {event_type_id}')
+
           # Fetch available slots over next 14 days
           now = datetime.now(timezone.utc)
           end = now + timedelta(days=14)
           try:
               data  = get(f'/slots/available?eventTypeId={event_type_id}'
-                          f'&start={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
-                          f'&end={end.strftime("%Y-%m-%dT%H:%M:%SZ")}')
+                          f'&startTime={now.strftime("%Y-%m-%dT%H:%M:%SZ")}'
+                          f'&endTime={end.strftime("%Y-%m-%dT%H:%M:%SZ")}')
               slots = data.get('data', {}).get('slots', {})
           except Exception as err:
               print(f'Could not fetch slots: {err}')
               sys.exit(0)
 
           available = sorted(d for d, s in slots.items() if s)
+          print(f'Available days: {len(available)}')
 
           if not available:
               result = {'status': 'unavailable', 'text': 'Fully booked — check back soon'}
