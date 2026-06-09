@@ -18,7 +18,7 @@ const CONTENT = {
   // ── Integrations ──────────────────────────────────────────
   // Cal.com booking link — shown as "Book a call" in the contact section.
   // Set to your Cal.com URL, e.g. "https://cal.com/brad-dealey/30min"
-  calLink: null,
+  calLink: "https://cal.com/bradjd/30min",
 
   // Microsoft Clarity project ID — enables heatmaps + session recordings.
   // Find it at clarity.microsoft.com → your project → Setup → get the ID string.
