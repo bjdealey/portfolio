@@ -181,13 +181,13 @@ function populate() {
   el('nav-fullname').textContent    = C.name;
   el('footer-initials').textContent = C.initials;
   el('nav-cta').textContent = C.hireMeText;
-  el('nav-cta').dataset.umamiEvent = 'Nav: Hire Me';
+  el('nav-cta').dataset.umamiEvent = 'Nav: Get in Touch';
   el('nav-cta').addEventListener('click', () => {
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
   });
 
   // Hero
-  el('hero-availability').textContent = C.availableForWork ? 'Available for work' : 'Currently unavailable';
+  el('hero-availability').textContent = C.availableForWork ? 'Open to connect' : 'Not currently available';
   el('hero-eyebrow').querySelector('.dot').style.display = C.availableForWork ? '' : 'none';
   el('hero-title-line1').textContent  = C.hero.titleLine1;
   el('hero-title-accent').textContent = C.hero.titleAccent;

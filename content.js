@@ -12,13 +12,13 @@ const CONTENT = {
   linkedin: "https://www.linkedin.com/in/brad-dealey/",
 
   availableForWork: true,
-  hireMeText: "Hire Me",
+  hireMeText: "Get in Touch",
   cvFile: "cv.html",  // CV page; set to null to hide the download buttons
 
   // ── Integrations ──────────────────────────────────────────
-  // Cal.com booking link — shown as "Book a call" in the contact section.
-  // Set to your Cal.com URL, e.g. "https://cal.com/brad-dealey/30min"
-  calLink: "https://cal.com/bradjd/30min",
+  // Cal.com booking link — set to your URL to add a "Book a call" button in
+  // the contact section, or leave null to rely on email only.
+  calLink: null,
 
   // Microsoft Clarity project ID — enables heatmaps + session recordings.
   // Find it at clarity.microsoft.com → your project → Setup → get the ID string.
@@ -38,7 +38,7 @@ const CONTENT = {
     expertise:      true,
     work:           true,
     certifications: true,
-    pricing:        true,
+    pricing:        false,
   },
 
   // ── Pricing ───────────────────────────────────────────────
@@ -112,9 +112,9 @@ const CONTENT = {
     titleLine1: "Solving problems,",
     titleAccent: "one script at a time.",
     subtitle:
-      "Automation Engineer at Sytner Group, available for RPA consulting. " +
-      "I design and deploy bots that eliminate manual work — document processing, " +
-      "cross-system integrations, and anything repetitive that's costing your team time.",
+      "Automation Engineer at Sytner Group. I build bots, explore new tools, " +
+      "and write about what I learn — mostly in RPA, Power Platform, and " +
+      "anything that makes work more efficient.",
   },
 
   // ── Stats strip ───────────────────────────────────────────
@@ -136,10 +136,10 @@ const CONTENT = {
       "Three years doing this in a fast-moving environment means I know what " +
       "breaks in production and how to build around it.",
 
-      "I also bring a software developer's background to the work — comfortable " +
-      "scripting custom logic, consuming APIs, and handling edge cases that the " +
-      "standard RPA toolset wasn't designed for. That's what separates a bot " +
-      "that works in a demo from one that runs reliably in production.",
+      "I also have a software development background — comfortable scripting " +
+      "custom logic, consuming APIs, and handling the edge cases that standard " +
+      "RPA tooling wasn't designed for. The crossover between automation and " +
+      "development is where I find the most interesting problems.",
     ],
     tags: [
       "RPA",
@@ -206,8 +206,9 @@ const CONTENT = {
       title: "Microsoft Power Platform",
       description:
         "Power Automate flows and Power Apps built around the Microsoft 365 " +
-        "tools your team already uses. Often the right choice when full RPA " +
-        "would be overkill — faster to build and easier for the business to own.",
+        "tools most organisations already have. I find this stack interesting " +
+        "for how much you can automate without heavy infrastructure — and " +
+        "where it starts to hit its limits.",
       items: [
         "Power Automate",
         "Power Apps",
@@ -218,10 +219,10 @@ const CONTENT = {
     {
       title: "Technical Integration",
       description:
-        "RPA bots rarely work in isolation — they need to talk to APIs, handle " +
-        "data transforms, and connect with other systems in your business. " +
-        "Having a developer's background means I can handle those connections " +
-        "properly, rather than working around what the RPA tool can't do.",
+        "RPA bots rarely work in isolation — they talk to APIs, handle data " +
+        "transforms, and sit alongside systems built by other teams. Having a " +
+        "development background means I can build those connections properly " +
+        "rather than working around what the RPA tool can't do alone.",
       items: [
         "REST APIs & webhooks",
         "Custom scripting (JS / VBA)",
@@ -313,9 +314,9 @@ const CONTENT = {
   // ── Contact ───────────────────────────────────────────────
   contact: {
     subtitle:
-      "Available for RPA consulting — process automation, bot development, and " +
-      "Power Platform work. Remote or hybrid, based in Leicestershire. " +
-      "Got a process to automate? Let's talk.",
+      "If you're working in automation, have questions about something I've " +
+      "built, or just want to connect — feel free to reach out. Always happy " +
+      "to talk shop about RPA, integrations, or anything in this space.",
   },
 
   // ── Footer ────────────────────────────────────────────────
