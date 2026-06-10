@@ -569,6 +569,7 @@ function applySections() {
     work:           '.work',
     certifications: '.certifications',
     pricing:        '.pricing-section',
+    writing:        '.writing-section',
   };
   Object.entries(map).forEach(([key, sel]) => {
     if (S[key] === false) {
@@ -616,6 +617,26 @@ function easterKonami() {
   });
 }
 
+async function loadRecentPosts() {
+  const container = document.getElementById('post-previews');
+  if (!container) return;
+  try {
+    const res   = await fetch('blog/posts.json');
+    const posts = await res.json();
+    if (!posts.length) {
+      document.querySelector('.writing-section').style.display = 'none';
+      return;
+    }
+    container.innerHTML = posts.slice(0, 3).map(p => `
+      <a href="blog/post.html?slug=${p.slug}" class="post-preview">
+        <span class="post-preview-title">${p.title}</span>
+        <span class="post-preview-date">${new Date(p.date + 'T00:00:00').toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>
+      </a>`).join('');
+  } catch {
+    document.querySelector('.writing-section').style.display = 'none';
+  }
+}
+
 loadClarity();
 applyTheme();
 applySections();
@@ -624,6 +645,7 @@ setupLogoExpand();
 easterKonami();
 loadGithubStats();
 loadCalAvailability();
+loadRecentPosts();
 buildTicker();
 initCursorGlow();
 requestAnimationFrame(() => document.body.classList.add('loaded'));

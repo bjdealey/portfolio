@@ -1,0 +1,9 @@
+[
+  {
+    "slug": "why-rpa-bots-fail-in-production",
+    "title": "Why RPA Bots Fail in Production (and How to Stop It)",
+    "date": "2026-06-10",
+    "excerpt": "Most automation failures aren't tool problems — they're design problems. After three years building bots in a live environment, here are the patterns I keep seeing.",
+    "tags": ["RPA", "Best Practices"]
+  }
+]

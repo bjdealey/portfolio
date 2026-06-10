@@ -1206,3 +1206,78 @@ body.loaded .hero-scroll   { animation: fadeUp .5s var(--ease) 0.9s   forwards; 
   font-family: var(--mono); font-size: clamp(1rem, 4vw, 1.8rem); font-weight: 700;
 }
 .konami-toast--in { opacity: 1; }
+
+/* ── Writing section (main page) ───────────────────────────────────────────── */
+.writing-section { border-top: 1px solid var(--border); }
+.post-previews { display: flex; flex-direction: column; margin: 0 0 36px; }
+.post-preview {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+  color: var(--fg); text-decoration: none; transition: .15s;
+}
+.post-preview:first-child { border-top: 1px solid var(--border); }
+.post-preview:hover .post-preview-title { color: var(--accent); }
+.post-preview-title { font-weight: 600; font-size: .95rem; flex: 1; }
+.post-preview-date  { font-family: var(--mono); font-size: .72rem; color: var(--fg-muted); white-space: nowrap; }
+.writing-all-link   { font-size: .85rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.writing-all-link:hover { text-decoration: underline; }
+
+/* ── Blog pages ────────────────────────────────────────────────────────────── */
+.blog-main { padding-top: var(--nav-h); min-height: 100vh; }
+.blog-header { padding: 72px 0 56px; border-bottom: 1px solid var(--border); margin-bottom: 64px; }
+.blog-title  { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15; margin: 10px 0 0; }
+.text-accent { color: var(--accent); }
+.nav-active  { color: var(--accent) !important; }
+
+/* Post list */
+.post-list         { display: flex; flex-direction: column; gap: 56px; padding-bottom: 80px; }
+.post-list-loading,
+.post-list-empty   { color: var(--fg-muted); font-size: .9rem; }
+.post-card         { border-bottom: 1px solid var(--border); padding-bottom: 56px; }
+.post-card-meta    { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.post-card-title   { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; line-height: 1.25; margin: 0 0 14px; }
+.post-card-title a { color: var(--fg); text-decoration: none; }
+.post-card-title a:hover { color: var(--accent); }
+.post-card-excerpt { color: var(--fg-muted); line-height: 1.7; font-size: .92rem; margin: 0 0 20px; }
+.post-card-link    { font-size: .85rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.post-card-link:hover { text-decoration: underline; }
+
+/* Post reader */
+.post-article { max-width: 700px; margin: 64px auto 80px; }
+.post-back    { display: inline-block; font-size: .82rem; color: var(--fg-muted); text-decoration: none; margin-bottom: 40px; }
+.post-back:hover { color: var(--accent); }
+.post-meta    { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
+
+/* Shared tag + date */
+.post-date { font-family: var(--mono); font-size: .75rem; color: var(--fg-muted); }
+.post-tag  { font-family: var(--mono); font-size: .68rem; padding: 3px 8px; border-radius: 4px;
+             background: var(--card); border: 1px solid var(--border); color: var(--fg-muted); }
+.post-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Post prose */
+.post-content { line-height: 1.8; font-size: .975rem; color: var(--fg); }
+.post-content h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; line-height: 1.2; margin: 0 0 32px; }
+.post-content h2 { font-size: 1.2rem; font-weight: 700; margin: 48px 0 16px; }
+.post-content h3 { font-size: 1rem; font-weight: 700; margin: 32px 0 12px; }
+.post-content p  { margin: 0 0 20px; color: var(--fg-muted); }
+.post-content strong { color: var(--fg); font-weight: 700; }
+.post-content a  { color: var(--accent); text-underline-offset: 3px; }
+.post-content ul,
+.post-content ol { padding-left: 1.4em; margin: 0 0 20px; color: var(--fg-muted); }
+.post-content li { margin-bottom: 6px; line-height: 1.7; }
+.post-content hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+.post-content blockquote {
+  border-left: 3px solid var(--accent); padding-left: 1.2em;
+  margin: 24px 0; color: var(--fg-muted); font-style: italic;
+}
+.post-content pre {
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+  padding: 1.25rem; overflow-x: auto; margin: 24px 0;
+  font-family: var(--mono); font-size: .82rem; line-height: 1.65;
+}
+.post-content code {
+  font-family: var(--mono); font-size: .875em;
+  background: var(--card); border: 1px solid var(--border);
+  padding: .1em .35em; border-radius: 3px;
+}
+.post-content pre code { background: none; border: none; padding: 0; font-size: inherit; }

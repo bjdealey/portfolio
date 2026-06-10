@@ -39,6 +39,7 @@ const CONTENT = {
     work:           true,
     certifications: true,
     pricing:        false,
+    writing:        true,
   },
 
   // ── Pricing ───────────────────────────────────────────────
