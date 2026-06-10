@@ -54,10 +54,11 @@ function initShell() {
     navLogo.addEventListener('mouseleave', () => { attr.style.width = '0'; });
   }
 
-  // Nav scroll state
+  // Nav background — blog pages have no hero, so always show it
   const nav = document.getElementById('nav');
+  if (nav) nav.classList.add('scrolled');
   window.addEventListener('scroll', () => {
-    if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
+    if (nav) nav.classList.add('scrolled');
   }, { passive: true });
 
   // Burger menu
